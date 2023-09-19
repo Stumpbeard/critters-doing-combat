@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cru5j8d7e1f6o"]
+
+[ext_resource type="Texture2D" uid="uid://u5qd8loj6ag4" path="res://heal-button-empty.png" id="1_6o3xu"]
+[ext_resource type="Script" path="res://rotate_action_button.gd" id="2_ixox7"]
+[ext_resource type="Texture2D" uid="uid://bvkxvvljx7pyi" path="res://heal-button-filled.png" id="3_75m8i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpqd0"]
+radius = 35.0
+height = 172.0
+
+[node name="RotateActionButton" type="Sprite2D"]
+texture = ExtResource("1_6o3xu")
+script = ExtResource("2_ixox7")
+
+[node name="Fill" type="TextureRect" parent="."]
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FilledButton" type="Sprite2D" parent="Fill"]
+position = Vector2(67, 29.5)
+texture = ExtResource("3_75m8i")
+
+[node name="ActivationArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vpqd0")
+
+[connection signal="input_event" from="ActivationArea" to="." method="_on_activation_area_input_event"]
+[connection signal="mouse_entered" from="ActivationArea" to="." method="_on_activation_area_mouse_entered"]
+[connection signal="mouse_exited" from="ActivationArea" to="." method="_on_activation_area_mouse_exited"]

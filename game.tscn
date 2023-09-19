@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://blbqohwbtfii1"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_me4d7"]
+[ext_resource type="Texture2D" uid="uid://cvatsg2ngnugm" path="res://battle-bg-city.png" id="1_mkd6h"]
+[ext_resource type="PackedScene" uid="uid://bk4ejvq3ybn2k" path="res://battle_box.tscn" id="2_mn8um"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="4_5m1q6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u786a"]
+font = ExtResource("4_5m1q6")
+font_size = 64
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_me4d7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_mkd6h")
+
+[node name="BattleBox" parent="." instance=ExtResource("2_mn8um")]
+
+[node name="GameOver" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GameOverLabel" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -67.0
+offset_right = 190.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You killed
+14 PidgePodges"
+label_settings = SubResource("LabelSettings_u786a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="battle_over" from="BattleBox" to="." method="_on_battle_box_battle_over"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ec5p5uqb50mp"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_ynpqt"]
+[ext_resource type="Texture2D" uid="uid://dcib4rbcrshxd" path="res://pidgepodge.png" id="2_l8ev2"]
+
+[node name="PidgePodge" instance=ExtResource("1_ynpqt")]
+texture = ExtResource("2_l8ev2")
+max_health = 4
+current_health = 4
+attack_speed = 1.3
+damage_value = [1, 2]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://bk4ejvq3ybn2k"]
+
+[ext_resource type="Texture2D" uid="uid://5knu7omky43k" path="res://battle-bg-middle.png" id="1_5huim"]
+[ext_resource type="PackedScene" uid="uid://dbnft6o58ne2q" path="res://heal_button.tscn" id="2_8ed25"]
+[ext_resource type="Script" path="res://battle_box.gd" id="2_lqiro"]
+[ext_resource type="PackedScene" uid="uid://cish0xust2a74" path="res://chill_button.tscn" id="3_hj33m"]
+[ext_resource type="PackedScene" uid="uid://bkjosqppfqcd4" path="res://ratler.tscn" id="4_wkaae"]
+[ext_resource type="PackedScene" uid="uid://e8pe3m78hakb" path="res://spawn_system.tscn" id="6_u23bm"]
+
+[node name="BattleBox" type="TextureRect"]
+y_sort_enabled = true
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5huim")
+script = ExtResource("2_lqiro")
+
+[node name="HealButton" parent="." instance=ExtResource("2_8ed25")]
+position = Vector2(432, 504)
+
+[node name="ChillButton" parent="." instance=ExtResource("3_hj33m")]
+position = Vector2(720, 504)
+
+[node name="Ratler" parent="." instance=ExtResource("4_wkaae")]
+position = Vector2(468, 324)
+is_hero = true
+
+[node name="SpawnSystem" parent="." instance=ExtResource("6_u23bm")]
+layout_mode = 1
+spawn_timer_speed = 2.0
+heat_bar_speed = 0.5
+
+[connection signal="heal_pressed" from="HealButton" to="." method="_on_heal_button_heal_pressed"]
+[connection signal="chill_pressed" from="ChillButton" to="." method="_on_chill_button_chill_pressed"]
+[connection signal="attacked" from="Ratler" to="." method="_on_attacked"]
+[connection signal="hero_died" from="Ratler" to="." method="_on_ratler_hero_died"]
+[connection signal="spawn_enemy" from="SpawnSystem" to="." method="_on_spawn_system_spawn_enemy"]

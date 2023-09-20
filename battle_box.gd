@@ -1,25 +1,41 @@
 extends TextureRect
-var pidge_podge_scene = preload("res://pidge_podge.tscn")
 
-var enemies_killed = 0
+@export var enemy_scene: PackedScene = preload("res://pidge_podge.tscn")
+
+var enemies_killed = {}
+
+var running_away
 
 signal battle_over
+signal run_away
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var pidge_podge = pidge_podge_scene.instantiate()
-	pidge_podge.position = Vector2(684, 324)
-	pidge_podge.is_villain = true
-	pidge_podge.add_to_group("enemies")
-	add_child(pidge_podge)
-	pidge_podge.connect("attacked", _on_attacked)
-	pidge_podge.connect("enemy_died", _on_enemy_died)
+	var enemy = enemy_scene.instantiate()
+	enemy.position = Vector2(684, 324)
+	enemy.is_villain = true
+	enemy.add_to_group("enemies")
+	add_child(enemy)
+	enemy.connect("attacked", _on_attacked)
+	enemy.connect("enemy_died", _on_enemy_died)
 	
 	
-func _on_enemy_died():
-	enemies_killed += 1
-	
+func _on_enemy_died(critter_type):
+	var enemy_name = ""
+	match critter_type:
+		0:
+			enemy_name = "Ratler"
+		1:
+			enemy_name = "PidgePodge"
+		2:
+			enemy_name = "Pizzaling"
+		3:
+			enemy_name = "Gullmeyer"
+	if enemy_name in enemies_killed:
+		enemies_killed[enemy_name] += 1
+	else:
+		enemies_killed[enemy_name] = 1
 	
 func get_live_enemies():
 	var enemies = get_tree().get_nodes_in_group("enemies")
@@ -28,16 +44,17 @@ func get_live_enemies():
 	
 func _physics_process(delta):
 	var live_enemies = get_live_enemies()
-	if !$Ratler.is_dying:
+	if !$Ratler.is_dying && !running_away:
 		if live_enemies:
 			$Ratler.is_attacking = true
 		else:
 			$Ratler.is_attacking = false
-	for enemy in live_enemies:
-		if !$Ratler.is_dying:
-			enemy.is_attacking = true
-		else:
-			enemy.is_attacking = false
+	if !running_away:
+		for enemy in live_enemies:
+			if !$Ratler.is_dying:
+				enemy.is_attacking = true
+			else:
+				enemy.is_attacking = false
 
 
 func _on_attacked(damage, is_villain):
@@ -56,24 +73,38 @@ func _on_heal_button_heal_pressed():
 
 func _on_spawn_system_spawn_enemy():
 	if !$Ratler.is_dying:
-		spawn_pidge_podge()
+		spawn_enemy()
 
 
-func spawn_pidge_podge():
-	var pidge_podge = pidge_podge_scene.instantiate()
-	pidge_podge.position = Vector2(684, 324)
-	pidge_podge.position.x += randi() % 72
-	pidge_podge.position.y += randi_range(-144, 72)
-	pidge_podge.is_villain = true
-	pidge_podge.add_to_group("enemies")
-	add_child(pidge_podge)
-	pidge_podge.connect("attacked", _on_attacked)
-	pidge_podge.connect("enemy_died", _on_enemy_died)
-
-
-func _on_chill_button_chill_pressed():
-	$SpawnSystem.reduce_heat()
+func spawn_enemy():
+	if running_away:
+		return
+	var enemy = enemy_scene.instantiate()
+	enemy.position = Vector2(684, 324)
+	enemy.position.x += randi() % 72
+	enemy.position.y += randi_range(-144, 72)
+	enemy.is_villain = true
+	enemy.add_to_group("enemies")
+	add_child(enemy)
+	enemy.connect("attacked", _on_attacked)
+	enemy.connect("enemy_died", _on_enemy_died)
 
 
 func _on_ratler_hero_died():
 	emit_signal("battle_over")
+
+
+func _on_run_button_finished_charging():
+	if $Ratler.is_dying:
+		return
+	$Ratler.flip_h = true
+	var tween = create_tween()
+	tween.tween_property($Ratler, "position:x", -72.0, 0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	running_away = true
+	for enemy in get_live_enemies():
+		enemy.is_attacking = false
+	$Ratler.is_attacking = false
+	emit_signal("run_away", $SpawnSystem.get_heat_ratio())
+	
+func set_heat_ratio(ratio):
+	$SpawnSystem.set_heat_ratio(ratio)

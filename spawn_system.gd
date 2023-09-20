@@ -5,12 +5,18 @@ var screen_height
 @export var spawn_timer_speed = 1.0
 @export var heat_bar_speed = 0.1
 
+var heat_ratio = 0.0
+
 signal spawn_enemy
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_height = get_viewport().get_visible_rect().size.y
+	var converted_heat_ratio = screen_height * heat_ratio
+	$HeatBarFill.size.y = converted_heat_ratio
+	$HeatBarFill.position.y -= converted_heat_ratio
+	$HeatBarFill/HeatBar.position.y += converted_heat_ratio
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,3 +41,10 @@ func reduce_heat():
 	tween.tween_property($HeatBarFill, "size:y", $HeatBarFill.size.y/2, 1.0)
 	tween.tween_property($HeatBarFill, "position:y", screen_height-(screen_height-$HeatBarFill.position.y)/2, 1.0)
 	tween.tween_property($HeatBarFill/HeatBar, "position:y", -screen_height+(screen_height+$HeatBarFill/HeatBar.position.y)/2, 1.0)
+
+
+func get_heat_ratio():
+	return $HeatBarFill.size.y / screen_height
+	
+func set_heat_ratio(ratio):
+	heat_ratio = ratio

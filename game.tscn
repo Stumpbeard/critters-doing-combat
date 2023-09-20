@@ -19,6 +19,17 @@ texture = ExtResource("1_mkd6h")
 
 [node name="BattleBox" parent="." instance=ExtResource("2_mn8um")]
 
+[node name="Fade" type="ColorRect" parent="BattleBox"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="GameOver" type="ColorRect" parent="."]
 visible = false
 anchors_preset = 15
@@ -50,3 +61,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="battle_over" from="BattleBox" to="." method="_on_battle_box_battle_over"]
+[connection signal="run_away" from="BattleBox" to="." method="_on_battle_box_run_away"]

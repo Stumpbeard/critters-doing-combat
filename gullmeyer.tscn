@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3kgdvn4vyrgd"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_huopi"]
+[ext_resource type="Texture2D" uid="uid://b0ldqy77m2ynk" path="res://gullmeyer.png" id="2_yn7ig"]
+
+[node name="Gullmeyer" instance=ExtResource("1_huopi")]
+texture = ExtResource("2_yn7ig")
+max_health = 6
+current_health = 6
+damage_value = [1, 4]
+critter_type = 3

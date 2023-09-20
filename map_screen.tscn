@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbkibmo11scwy"]
+
+[ext_resource type="Script" path="res://map_screen.gd" id="1_rqhi0"]
+[ext_resource type="Texture2D" uid="uid://chysl4xqvx7s5" path="res://subway-map.png" id="1_sappg"]
+[ext_resource type="PackedScene" uid="uid://bbqlsvbwurfmo" path="res://pizzeria_map_selector.tscn" id="2_ocmgo"]
+[ext_resource type="PackedScene" uid="uid://deef5wfohxxa3" path="res://city_map_selector.tscn" id="3_m22mx"]
+[ext_resource type="PackedScene" uid="uid://bkuc6xk82r1c7" path="res://bridge_map_selector.tscn" id="4_2eeva"]
+[ext_resource type="Texture2D" uid="uid://c35vdosodfbcw" path="res://ratler.png" id="6_stwxy"]
+
+[sub_resource type="Curve2D" id="Curve2D_0tfol"]
+_data = {
+"points": PackedVector2Array(10.0113, 9.01017, -10.0113, -9.01017, 602, 495, 1.33484, 0.66742, -1.33484, -0.66742, 486, 447, 3.00339, -6.00678, -3.00339, 6.00678, 419, 422, 0, 0, 0, 0, 404, 453, 0, 0, 0, 0, 398, 448, 0, 0, 0, 0, 471, 331, 0, 0, 0, 0, 473, 296)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_q2go2"]
+_data = {
+"points": PackedVector2Array(-3, 20, 3, -20, 473, 294, -11, 0, 11, 0, 563, 141, -41.5, 4.5, 41.5, -4.5, 755, 238, 10.5, 2.5, -10.5, -2.5, 789, 203, 0, 0, 0, 0, 809, 158, 0, 0, 0, 0, 838, 177, 0, 0, 0, 0, 812, 192)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_34f13"]
+_data = {
+"points": PackedVector2Array(-10.1083, 0, 10.1083, 0, 605, 499, -2.37841, -3.56762, 2.37841, 3.56762, 758, 574, -4.75683, 0.594603, 4.75683, -0.594603, 742, 449, -2.97302, 4.75683, 2.97302, -4.75683, 759, 421, 2.37841, 20.2165, -2.37841, -20.2165, 726, 345, -12.4867, 1.18921, 12.4867, -1.18921, 727, 239, -18.4327, -1.78381, 18.4327, 1.78381, 810, 194)
+}
+point_count = 7
+
+[node name="MapScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_rqhi0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_sappg")
+
+[node name="PizzeriaMapSelector" parent="." instance=ExtResource("2_ocmgo")]
+position = Vector2(802, 188)
+
+[node name="CityMapSelector" parent="." instance=ExtResource("3_m22mx")]
+position = Vector2(470, 295)
+
+[node name="BridgeMapSelector" parent="." instance=ExtResource("4_2eeva")]
+position = Vector2(602, 496)
+
+[node name="BridgeToCityPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0tfol")
+
+[node name="PlayerFollower" type="PathFollow2D" parent="BridgeToCityPath"]
+visible = false
+position = Vector2(602, 495)
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BridgeToCityPath/PlayerFollower"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_stwxy")
+
+[node name="CityToPizzaPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_q2go2")
+
+[node name="PlayerFollower" type="PathFollow2D" parent="CityToPizzaPath"]
+visible = false
+position = Vector2(473, 294)
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CityToPizzaPath/PlayerFollower"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_stwxy")
+
+[node name="BridgeToPizzaPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_34f13")
+
+[node name="PlayerFollower" type="PathFollow2D" parent="BridgeToPizzaPath"]
+visible = false
+position = Vector2(605, 499)
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BridgeToPizzaPath/PlayerFollower"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_stwxy")
+
+[connection signal="map_button_clicked" from="PizzeriaMapSelector" to="." method="_on_pizzeria_map_selector_map_button_clicked"]
+[connection signal="map_button_clicked" from="CityMapSelector" to="." method="_on_city_map_selector_map_button_clicked"]
+[connection signal="map_button_clicked" from="BridgeMapSelector" to="." method="_on_bridge_map_selector_map_button_clicked"]

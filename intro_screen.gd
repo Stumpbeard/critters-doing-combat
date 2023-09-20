@@ -1,7 +1,6 @@
 extends Control
 
-var game_scene = preload("res://game.tscn")
-
+signal start_game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +27,5 @@ func jump():
 func _input(event):
 	if event is InputEventMouseButton:
 		if !event.pressed:
-			var game = game_scene.instantiate()
-			get_tree().root.add_child(game)
-			queue_free()
+			emit_signal("start_game")
 			

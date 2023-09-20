@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbqlsvbwurfmo"]
+
+[ext_resource type="PackedScene" uid="uid://23p6n27nn3fq" path="res://map_selector.tscn" id="1_vtdam"]
+
+[node name="PizzeriaMapSelector" instance=ExtResource("1_vtdam")]

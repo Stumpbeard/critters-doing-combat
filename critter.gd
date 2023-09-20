@@ -4,12 +4,15 @@ signal attacked
 signal hero_died
 signal enemy_died
 
+enum Critters {RATLER, PIDGE_PODGE, PIZZALING, GULLMEYER}
+
 @export var is_villain = false
 @export var is_hero = false
 @export var max_health = 10
 @export var current_health = 10
 @export var attack_speed = 1.0
 @export var damage_value = [2, 3]
+@export var critter_type: Critters = Critters.RATLER
 
 var exploding_number_scene = preload("res://exploding_number.tscn")
 
@@ -60,7 +63,7 @@ func _physics_process(delta):
 		position += movement * delta
 		if position.y > 2000:
 			if is_villain:
-				emit_signal("enemy_died")
+				emit_signal("enemy_died", critter_type)
 				queue_free()
 			elif is_hero:
 				gravity = 0

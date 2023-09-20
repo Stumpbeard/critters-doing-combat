@@ -39,7 +39,7 @@ offset_right = 324.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Critters doing Combat
+text = "Critters Doing Combat
 Click Anywhere"
 label_settings = SubResource("LabelSettings_j3bgx")
 horizontal_alignment = 1

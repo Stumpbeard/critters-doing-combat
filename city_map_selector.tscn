@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://deef5wfohxxa3"]
+
+[ext_resource type="PackedScene" uid="uid://23p6n27nn3fq" path="res://map_selector.tscn" id="1_3as3t"]
+[ext_resource type="Texture2D" uid="uid://ces0622mu4y8b" path="res://midtown-bubble.png" id="2_hfh3y"]
+
+[node name="CityMapSelector" instance=ExtResource("1_3as3t")]
+
+[node name="Bubble" parent="." index="0"]
+position = Vector2(-128, -6)
+texture = ExtResource("2_hfh3y")

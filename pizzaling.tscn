@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv6wwpkn0ka46"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_e642l"]
+[ext_resource type="Texture2D" uid="uid://bs6mxghhp8po" path="res://pizzaling.png" id="2_4j7we"]
+
+[node name="Pizzaling" instance=ExtResource("1_e642l")]
+texture = ExtResource("2_4j7we")
+max_health = 5
+current_health = 5
+attack_speed = 1.2
+critter_type = 2

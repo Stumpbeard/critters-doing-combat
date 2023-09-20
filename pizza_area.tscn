@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi1obha2kujxa"]
+
+[ext_resource type="PackedScene" uid="uid://blbqohwbtfii1" path="res://game.tscn" id="1_a2jti"]
+[ext_resource type="Texture2D" uid="uid://cogiutbwjd4y3" path="res://battle-bg-pizza.png" id="2_bntji"]
+[ext_resource type="Script" path="res://pizza_area.gd" id="2_br31v"]
+[ext_resource type="PackedScene" uid="uid://bv6wwpkn0ka46" path="res://pizzaling.tscn" id="3_bbblq"]
+
+[node name="PizzaArea" instance=ExtResource("1_a2jti")]
+script = ExtResource("2_br31v")
+
+[node name="TextureRect" parent="." index="0"]
+texture = ExtResource("2_bntji")
+
+[node name="BattleBox" parent="." index="1"]
+enemy_scene = ExtResource("3_bbblq")

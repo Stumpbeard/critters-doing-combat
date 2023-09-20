@@ -2,7 +2,7 @@ extends Sprite2D
 
 var base_width
 var base_height
-var button_ready = false
+@export var button_ready = false
 
 @export var recharge_rate = 3.0
 

@@ -1,8 +1,16 @@
 extends TextureRect
 
 @export var enemy_scene: PackedScene = preload("res://pidge_podge.tscn")
+var level_up_scene = preload("res://level_up_pop_up.tscn")
 
 var enemies_killed = {}
+var level_info = {
+	"level": 1,
+	"to_next_level": 1,
+	"hp": 0,
+	"strength": 0,
+	"speed": 0
+}
 
 var running_away
 
@@ -36,6 +44,7 @@ func _on_enemy_died(critter_type):
 		enemies_killed[enemy_name] += 1
 	else:
 		enemies_killed[enemy_name] = 1
+	check_for_level_up()
 	
 func get_live_enemies():
 	var enemies = get_tree().get_nodes_in_group("enemies")
@@ -68,7 +77,7 @@ func _on_attacked(damage, is_villain):
 
 func _on_heal_button_heal_pressed():
 	if !$Ratler.is_dying:
-		$Ratler.current_health = $Ratler.max_health
+		$Ratler.heal_up()
 
 
 func _on_spawn_system_spawn_enemy():
@@ -108,3 +117,48 @@ func _on_run_button_finished_charging():
 	
 func set_heat_ratio(ratio):
 	$SpawnSystem.set_heat_ratio(ratio)
+	
+
+func set_level_info(new_level_info):
+	level_info = new_level_info
+	for level in range(level_info["hp"]):
+		$Ratler.increase_hp()
+	for level in range(level_info["strength"]):
+		$Ratler.increase_strength()
+	for level in range(level_info["speed"]):
+		$Ratler.increase_speed()
+	$Ratler.heal_up()
+
+func count_killed_enemies():
+	var total = 0
+	for enemy in enemies_killed:
+		total += enemies_killed[enemy]
+	return total
+	
+func check_for_level_up():
+	if level_info["to_next_level"] <= 1:
+		level_up()
+	else:
+		level_info["to_next_level"] -=1
+		
+func do_level_up_math():
+	level_info["level"] += 1
+	level_info["to_next_level"] = level_info["level"]
+	var type_of_level = level_info["level"] % 3
+	match type_of_level:
+		2:
+			$Ratler.increase_hp()
+			level_info["hp"] += 1
+		0:
+			$Ratler.increase_strength()
+			level_info["strength"] += 1
+		1:
+			$Ratler.increase_speed()
+			level_info["speed"] += 1
+
+func level_up():
+	$Ratler.level_up()
+	var level_up_pop = level_up_scene.instantiate()
+	level_up_pop.position = $Ratler.position
+	add_child(level_up_pop)
+	do_level_up_math()

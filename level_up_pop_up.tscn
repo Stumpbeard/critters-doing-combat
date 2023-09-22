@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq4sa5h3mrq7s"]
+
+[ext_resource type="Texture2D" uid="uid://3egmn4epu3ty" path="res://level-up-popup.png" id="1_s18kf"]
+[ext_resource type="Script" path="res://level_up_pop_up.gd" id="2_kia6c"]
+
+[node name="LevelUpPopUp" type="Sprite2D"]
+z_index = 2
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_s18kf")
+script = ExtResource("2_kia6c")

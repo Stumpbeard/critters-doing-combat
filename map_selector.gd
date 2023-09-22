@@ -12,8 +12,9 @@ func _ready():
 
 
 func _on_mouse_area_mouse_entered():
+
 	var tween = create_tween()
-	tween.tween_property($Bubble, "scale", Vector2(1, 1), 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property($Bubble, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
 
 func _on_mouse_area_mouse_exited():

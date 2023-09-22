@@ -5,6 +5,7 @@ signal hero_died
 signal enemy_died
 
 enum Critters {RATLER, PIDGE_PODGE, PIZZALING, GULLMEYER}
+enum Types {RODENT, TRASH, BIRD, HOLY, DEVIL}
 
 @export var is_villain = false
 @export var is_hero = false
@@ -20,6 +21,7 @@ var gravity = 144.0 * 8
 var velocity = Vector2()
 var is_dying = false
 var is_attacking = true
+var is_leveling = false
 
 
 func _ready():
@@ -27,6 +29,7 @@ func _ready():
 		flip_h = true
 	$HealthLabel.text = "%s/%s" % [current_health, max_health]
 	$AttackTimer.start(attack_speed)
+	duplicate_tex_but_yellow()
 
 
 func attack():
@@ -52,6 +55,9 @@ func take_damage(dam):
 
 func _physics_process(delta):
 	$HealthLabel.text = "%s/%s" % [current_health, max_health]
+	var yellow = get_node("YellowLayer")
+	if yellow:
+		yellow.offset = offset
 	if is_dying:
 		is_attacking = false
 		var movement = Vector2()
@@ -63,7 +69,6 @@ func _physics_process(delta):
 		position += movement * delta
 		if position.y > 2000:
 			if is_villain:
-				emit_signal("enemy_died", critter_type)
 				queue_free()
 			elif is_hero:
 				gravity = 0
@@ -76,7 +81,48 @@ func die():
 	is_dying = true
 	$AttackTimer.stop()
 	$HealthLabel.visible = false
+	if is_villain:
+		emit_signal("enemy_died", critter_type)
 
 
 func _on_attack_timer_timeout():
 	attack()
+	
+
+func duplicate_tex_but_yellow():
+	var new_img: Image = texture.get_image()
+	for y in new_img.get_height():
+		for x in new_img.get_width():
+			if new_img.get_pixel(x, y).a == 1.0:
+				new_img.set_pixel(x, y, Color(251.0/255.0, 242.0/255.0, 54.0/255.0, 1.0))
+	var new_tex = Sprite2D.new()
+	new_tex.texture = ImageTexture.create_from_image(new_img)
+	new_tex.name = "YellowLayer"
+	new_tex.modulate.a = 0.0
+	add_child(new_tex)
+	
+func level_up():
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(2, 2), 0.2)
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.2)
+	var rot_tween = create_tween()
+	rot_tween.tween_property(self, "rotation_degrees", 720, 0.4)
+	rot_tween.tween_callback(set_rotation_degrees.bind(0))
+	var yellow_tween = create_tween()
+	yellow_tween.tween_property(get_node("YellowLayer"), "modulate:a", 1.0, 0.2)
+	yellow_tween.tween_property(get_node("YellowLayer"), "modulate:a", 0.0, 0.2)
+	
+	
+func increase_hp():
+	max_health += 1
+	
+func increase_strength():
+	damage_value[1] += 1
+	if damage_value[1] % 6 == 0:
+		damage_value[0] += 1
+	
+func increase_speed():
+	attack_speed = max(0.1, attack_speed - 0.1)
+	
+func heal_up():
+	current_health = max_health

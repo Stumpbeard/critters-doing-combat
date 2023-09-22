@@ -13,10 +13,12 @@ config_version=5
 config/name="Critters Doing Combat"
 run/main_scene="res://game_shell.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-config/icon="res://ratler.png"
+config/icon="res://ratler-big.png"
 
 [display]
 
+window/size/window_width_override=2304
+window/size/window_height_override=1296
 window/stretch/mode="viewport"
 
 [editor]

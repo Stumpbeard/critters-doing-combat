@@ -15,6 +15,14 @@ var heat_ratios = {
 	"pizzeria": 0.0
 }
 
+var level_up_info = {
+	"level": 1,
+	"to_next_level": 1,
+	"hp": 0,
+	"strength": 0,
+	"speed": 0
+}
+
 
 func accumulate_kills(new_kills):
 	for kill in new_kills:
@@ -45,6 +53,7 @@ func _on_battle_to_subway(from, heat_ratio):
 	add_child(subway_map)
 	map_scene = subway_map
 	kills = battle_scene.get_enemies_killed()
+	level_up_info = battle_scene.get_level_info()
 	battle_scene.queue_free()
 
 
@@ -73,3 +82,4 @@ func _on_arrived_at_destination(dest):
 			battle_scene = level
 			map_scene.queue_free()
 	battle_scene.set_enemies_killed(kills)
+	battle_scene.set_level_info(level_up_info)

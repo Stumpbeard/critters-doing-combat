@@ -20,7 +20,7 @@ position = Vector2(432, 504)
 [node name="RunButton" parent="." instance=ExtResource("4_eki85")]
 position = Vector2(720, 504)
 
-[node name="Ratler" parent="." instance=ExtResource("4_wkaae")]
+[node name="Ratler" parent="." groups=["player"] instance=ExtResource("4_wkaae")]
 position = Vector2(468, 324)
 is_hero = true
 

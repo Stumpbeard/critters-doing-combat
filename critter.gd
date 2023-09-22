@@ -14,6 +14,7 @@ enum Types {RODENT, TRASH, BIRD, HOLY, DEVIL}
 @export var attack_speed = 1.0
 @export var damage_value = [2, 3]
 @export var critter_type: Critters = Critters.RATLER
+@export var status_types: Array[Types] = [Types.RODENT]
 
 var exploding_number_scene = preload("res://exploding_number.tscn")
 

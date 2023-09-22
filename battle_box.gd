@@ -1,21 +1,13 @@
 extends TextureRect
 
-@export var enemy_scene: PackedScene = preload("res://pidge_podge.tscn")
-var level_up_scene = preload("res://level_up_pop_up.tscn")
-
-var enemies_killed = {}
-var level_info = {
-	"level": 1,
-	"to_next_level": 1,
-	"hp": 0,
-	"strength": 0,
-	"speed": 0
-}
-
-var running_away
-
 signal battle_over
 signal run_away
+
+@export var enemy_scene: PackedScene = preload("res://pidge_podge.tscn")
+var level_up_scene = preload("res://level_up_pop_up.tscn")
+var enemies_killed = {}
+var level_info = {"level": 1, "to_next_level": 1, "hp": 0, "strength": 0, "speed": 0}
+var running_away
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,8 +19,8 @@ func _ready():
 	add_child(enemy)
 	enemy.connect("attacked", _on_attacked)
 	enemy.connect("enemy_died", _on_enemy_died)
-	
-	
+
+
 func _on_enemy_died(critter_type):
 	var enemy_name = ""
 	match critter_type:
@@ -45,13 +37,15 @@ func _on_enemy_died(critter_type):
 	else:
 		enemies_killed[enemy_name] = 1
 	check_for_level_up()
-	
+
+
 func get_live_enemies():
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	var live_enemies = enemies.filter(func(e): return !e.is_dying)
 	return live_enemies
-	
-func _physics_process(delta):
+
+
+func _physics_process(_delta):
 	var live_enemies = get_live_enemies()
 	if !$Ratler.is_dying && !running_away:
 		if live_enemies:
@@ -108,16 +102,19 @@ func _on_run_button_finished_charging():
 		return
 	$Ratler.flip_h = true
 	var tween = create_tween()
-	tween.tween_property($Ratler, "position:x", -72.0, 0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_property($Ratler, "position:x", -72.0, 0.5).set_trans(Tween.TRANS_QUAD).set_ease(
+		Tween.EASE_IN
+	)
 	running_away = true
 	for enemy in get_live_enemies():
 		enemy.is_attacking = false
 	$Ratler.is_attacking = false
 	emit_signal("run_away", $SpawnSystem.get_heat_ratio())
-	
+
+
 func set_heat_ratio(ratio):
 	$SpawnSystem.set_heat_ratio(ratio)
-	
+
 
 func set_level_info(new_level_info):
 	level_info = new_level_info
@@ -129,18 +126,21 @@ func set_level_info(new_level_info):
 		$Ratler.increase_speed()
 	$Ratler.heal_up()
 
+
 func count_killed_enemies():
 	var total = 0
 	for enemy in enemies_killed:
 		total += enemies_killed[enemy]
 	return total
-	
+
+
 func check_for_level_up():
 	if level_info["to_next_level"] <= 1:
 		level_up()
 	else:
-		level_info["to_next_level"] -=1
-		
+		level_info["to_next_level"] -= 1
+
+
 func do_level_up_math():
 	level_info["level"] += 1
 	level_info["to_next_level"] = level_info["level"]
@@ -155,6 +155,7 @@ func do_level_up_math():
 		1:
 			$Ratler.increase_speed()
 			level_info["speed"] += 1
+
 
 func level_up():
 	$Ratler.level_up()

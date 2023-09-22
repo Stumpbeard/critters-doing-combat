@@ -1,16 +1,14 @@
 extends Control
 
-enum Places {CITY, PIZZERIA, BRIDGE}
+signal arrived_at_destination
+
+enum Places { CITY, PIZZERIA, BRIDGE }
 
 @export var player_at: Places = Places.CITY
-var player_traveling = false
-@export var heat_ratios = {
-	"city": 0.0,
-	"bridge": 0.0,
-	"pizzeria": 0.0
-}
+@export var heat_ratios = {"city": 0.0, "bridge": 0.0, "pizzeria": 0.0}
 
-signal arrived_at_destination
+var player_traveling = false
+
 
 func _ready():
 	match player_at:
@@ -21,7 +19,8 @@ func _ready():
 		Places.PIZZERIA:
 			$CityToPizzaPath/PlayerFollower.visible = true
 			$CityToPizzaPath/PlayerFollower.progress_ratio = 1.0
-	
+
+
 func set_heat_ratios(heat_ratios):
 	$PizzeriaMapSelector.heat_ratio = heat_ratios["pizzeria"]
 	$CityMapSelector.heat_ratio = heat_ratios["city"]
@@ -36,9 +35,9 @@ func set_current_location(from):
 			player_at = Places.PIZZERIA
 		"bridge":
 			player_at = Places.BRIDGE
-			
 
-func end_trip(dest=""):
+
+func end_trip(dest = ""):
 	player_traveling = false
 	emit_signal("arrived_at_destination", dest)
 

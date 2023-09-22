@@ -2,7 +2,6 @@ extends Label
 
 @export var number = 3
 
-
 var gravity = 144.0 * 8
 var velocity = Vector2()
 
@@ -19,9 +18,9 @@ func _physics_process(delta):
 	movement.x = velocity.x
 	movement.y += velocity.y
 	movement.y += gravity
-	
+
 	position += movement * delta
-	
+
 
 func pop_it():
 	velocity.x = randf() * 288.0 - 144.0

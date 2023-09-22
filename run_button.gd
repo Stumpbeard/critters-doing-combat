@@ -9,15 +9,17 @@ var gravity = 144.0 * 8
 var velocity = Vector2()
 var popping = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	base_width = texture.get_width()
 	base_height = texture.get_height()
 	$Fill.size = Vector2(base_width, base_height)
-	$Fill.position = Vector2(base_width/-2, base_height/-2)
+	$Fill.position = Vector2(base_width / -2, base_height / -2)
 	$Fill/FilledButton.position = $Fill.position * -1
 	$Fill.size.x = 0.0
-	
+
+
 func _physics_process(delta):
 	if popping:
 		var movement = Vector2()
@@ -42,12 +44,13 @@ func _physics_process(delta):
 		else:
 			position.y -= y_mod
 			origin_position.y -= y_mod
-			
+
 		if fill_ratio * 2 >= 1.0:
 			velocity.x = randf() * 288.0 - 144.0
 			velocity.y = gravity * -(randf() * 0.75 + 1.0)
 			popping = true
 			emit_signal("finished_charging")
+
 
 func action():
 	if popping || vibrating:

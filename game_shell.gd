@@ -9,19 +9,9 @@ var battle_scene = null
 var map_scene = null
 
 var kills = {}
-var heat_ratios = {
-	"city": 0.0,
-	"bridge": 0.0,
-	"pizzeria": 0.0
-}
+var heat_ratios = {"city": 0.0, "bridge": 0.0, "pizzeria": 0.0}
 
-var level_up_info = {
-	"level": 1,
-	"to_next_level": 1,
-	"hp": 0,
-	"strength": 0,
-	"speed": 0
-}
+var level_up_info = {"level": 1, "to_next_level": 1, "hp": 0, "strength": 0, "speed": 0}
 
 
 func accumulate_kills(new_kills):
@@ -39,6 +29,7 @@ func _on_intro_screen_start_game():
 	battle_scene = city_level
 	$IntroScreen.queue_free()
 
+
 func _on_battle_to_subway(from, heat_ratio):
 	var heat_ratio_diff = heat_ratio - heat_ratios[from]
 	heat_ratios[from] = min(1.0, heat_ratio)
@@ -55,7 +46,6 @@ func _on_battle_to_subway(from, heat_ratio):
 	kills = battle_scene.get_enemies_killed()
 	level_up_info = battle_scene.get_level_info()
 	battle_scene.queue_free()
-
 
 
 func _on_arrived_at_destination(dest):

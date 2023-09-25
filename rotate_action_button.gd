@@ -6,6 +6,7 @@ extends Sprite2D
 
 var base_width
 var base_height
+var fill_tween
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,15 +16,14 @@ func _ready():
 	$Fill.size = Vector2(base_width, base_height)
 	$Fill.position = Vector2(base_width / -2, base_height / -2)
 	$Fill/FilledButton.position = $Fill.position * -1
-	trigger_fill()
 
 
 func trigger_fill():
 	button_ready = false
 	$Fill.size.x = 0
-	var tween = create_tween()
-	tween.tween_property($Fill, "size:x", base_width, recharge_rate)
-	tween.tween_callback(ready_button)
+	fill_tween = create_tween()
+	fill_tween.tween_property($Fill, "size:x", base_width, recharge_rate)
+	fill_tween.tween_callback(ready_button)
 
 
 func ready_button():

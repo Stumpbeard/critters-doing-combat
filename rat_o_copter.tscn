@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdgln3d0y1rt8"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_krsd4"]
+[ext_resource type="Texture2D" uid="uid://b53q13021eu02" path="res://ratocopter.png" id="2_vkiu0"]
+
+[node name="Rat-O-Copter" instance=ExtResource("1_krsd4")]
+texture = ExtResource("2_vkiu0")
+offset = Vector2(2.08165e-12, -36)
+max_health = 30
+current_health = 30
+attack_speed = 1.5
+damage_value = [6, 8]
+critter_type = 5
+status_types = Array[int]([0, 2])

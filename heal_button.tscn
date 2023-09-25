@@ -1,8 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbnft6o58ne2q"]
+[gd_scene load_steps=7 format=3 uid="uid://dbnft6o58ne2q"]
 
 [ext_resource type="PackedScene" uid="uid://cru5j8d7e1f6o" path="res://rotate_action_button.tscn" id="1_mle5w"]
 [ext_resource type="Script" path="res://heal_button.gd" id="2_hoord"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="3_grm70"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="4_pis32"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8lvrg"]
+resource_local_to_scene = true
+radius = 36.0
+height = 166.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_cfxjk"]
+resource_local_to_scene = true
+font = ExtResource("4_pis32")
+font_size = 32
 
 [node name="HealButton" instance=ExtResource("1_mle5w")]
 script = ExtResource("2_hoord")
+heals = 1
 recharge_rate = 5.0
+
+[node name="CollisionShape2D" parent="ActivationArea" index="0"]
+shape = SubResource("CapsuleShape2D_8lvrg")
+
+[node name="RemainingHeals" parent="ActivationArea" index="1" instance=ExtResource("3_grm70")]
+offset_left = -11.0
+offset_top = 19.0
+offset_right = 19.0
+offset_bottom = 54.0
+text = "x0"
+label_settings = SubResource("LabelSettings_cfxjk")
+text_size = 32

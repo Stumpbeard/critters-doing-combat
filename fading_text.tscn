@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtq0dppm2y80g"]
+
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="1_3lkef"]
+[ext_resource type="Script" path="res://FadingText.gd" id="2_etcvr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mdrtq"]
+font = ExtResource("1_3lkef")
+font_size = 32
+
+[node name="FadingText" type="Label"]
+z_index = 1
+offset_left = -41.0
+offset_top = -17.0
+offset_right = 41.0
+offset_bottom = 18.0
+text = "Super!"
+label_settings = SubResource("LabelSettings_mdrtq")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_etcvr")

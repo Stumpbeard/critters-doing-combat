@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bvkxvvljx7pyi" path="res://heal-button-filled.png" id="3_75m8i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpqd0"]
+resource_local_to_scene = true
 radius = 35.0
 height = 172.0
 

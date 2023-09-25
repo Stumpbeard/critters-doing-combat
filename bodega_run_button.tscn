@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvik8rb4phvon"]
+
+[ext_resource type="Script" path="res://bodega_run_button.gd" id="1_ie77w"]
+[ext_resource type="Texture2D" uid="uid://b4tw8f2puqhme" path="res://bodega-button.png" id="1_nh2gx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rw63y"]
+radius = 69.0
+height = 308.0
+
+[node name="BodegaRunButton" type="Area2D"]
+script = ExtResource("1_ie77w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nh2gx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rw63y")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

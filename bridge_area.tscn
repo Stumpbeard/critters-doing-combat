@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlm28g5ywexva"]
+[gd_scene load_steps=6 format=3 uid="uid://dlm28g5ywexva"]
 
 [ext_resource type="PackedScene" uid="uid://blbqohwbtfii1" path="res://game.tscn" id="1_uscb5"]
 [ext_resource type="Script" path="res://bridge_area.gd" id="2_hetbq"]
 [ext_resource type="Texture2D" uid="uid://yj73wkohs28w" path="res://battle-bg-bridge.png" id="2_n7hsp"]
 [ext_resource type="PackedScene" uid="uid://d3kgdvn4vyrgd" path="res://gullmeyer.tscn" id="3_5il38"]
+[ext_resource type="PackedScene" uid="uid://dijj88kqb2op1" path="res://baggo.tscn" id="5_vpqvb"]
 
 [node name="BridgeArea" instance=ExtResource("1_uscb5")]
 script = ExtResource("2_hetbq")
@@ -13,3 +14,4 @@ texture = ExtResource("2_n7hsp")
 
 [node name="BattleBox" parent="." index="1"]
 enemy_scene = ExtResource("3_5il38")
+boss_scene = ExtResource("5_vpqvb")

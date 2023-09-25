@@ -1,6 +1,7 @@
 extends Control
 
 signal spawn_enemy
+signal trigger_boss_mode
 
 @export var spawn_timer_speed = 1.0
 @export var heat_bar_speed = 0.1
@@ -8,6 +9,8 @@ signal spawn_enemy
 var screen_height
 
 var heat_ratio = 0.0
+
+var in_boss_mode = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,17 +20,33 @@ func _ready():
 	$HeatBarFill.size.y = converted_heat_ratio
 	$HeatBarFill.position.y -= converted_heat_ratio
 	$HeatBarFill/HeatBar.position.y += converted_heat_ratio
+	
+	var skull_tween = create_tween()
+	skull_tween.set_loops()
+	skull_tween.tween_property($BossIndicator, "scale", Vector2(1.3, 1.3), 0.75).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	skull_tween.tween_property($BossIndicator, "scale", Vector2(1.0, 1.0), 0.75).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	$SpawnTimerFill.size.y += spawn_timer_speed
-	$HeatBarFill.size.y += heat_bar_speed
-	$HeatBarFill.position.y -= heat_bar_speed
-	$HeatBarFill/HeatBar.position.y += heat_bar_speed
+	if !in_boss_mode:
+		$SpawnTimerFill.size.y += spawn_timer_speed
+		$HeatBarFill.size.y = min($HeatBarFill.size.y + heat_bar_speed, screen_height * 0.9)
+		$HeatBarFill.position.y = max($HeatBarFill.position.y - heat_bar_speed, screen_height * 0.1)
+		$HeatBarFill/HeatBar.position.y = min($HeatBarFill/HeatBar.position.y + heat_bar_speed, screen_height * -0.1)
 
-	if $SpawnTimerFill.size.y + $HeatBarFill.size.y >= screen_height:
-		reset_spawn()
+		if $SpawnTimerFill.size.y + $HeatBarFill.size.y >= screen_height:
+			if is_equal_approx($HeatBarFill.size.y, screen_height * 0.9):
+				kill_all_enemies_and_spawn_boss()
+			else:
+				reset_spawn()
+		
+
+
+func kill_all_enemies_and_spawn_boss():
+	in_boss_mode = true
+	emit_signal("trigger_boss_mode")
+	$BossIndicator.visible = true
 
 
 func reset_spawn():

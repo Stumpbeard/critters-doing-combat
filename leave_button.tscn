@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://ri1cqbib30wl"]
+
+[ext_resource type="PackedScene" uid="uid://bvik8rb4phvon" path="res://bodega_run_button.tscn" id="1_6tiqr"]
+[ext_resource type="Script" path="res://leave_button.gd" id="2_gqobx"]
+[ext_resource type="Texture2D" uid="uid://c5y37rl2g20uh" path="res://leave-button.png" id="2_o56kg"]
+
+[node name="LeaveButton" instance=ExtResource("1_6tiqr")]
+script = ExtResource("2_gqobx")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_o56kg")

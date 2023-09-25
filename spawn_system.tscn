@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://e8pe3m78hakb"]
+[gd_scene load_steps=5 format=3 uid="uid://e8pe3m78hakb"]
 
 [ext_resource type="Script" path="res://spawn_system.gd" id="1_7mwcy"]
 [ext_resource type="Texture2D" uid="uid://clu0v4qia0d4r" path="res://spawn-timer.png" id="1_hch3n"]
 [ext_resource type="Texture2D" uid="uid://dqbdluccvunmt" path="res://heat-bar.png" id="2_dqudy"]
+[ext_resource type="Texture2D" uid="uid://bxru8alirkn0n" path="res://boss-indicator.png" id="4_fnwws"]
 
 [node name="SpawnSystem" type="Control"]
 layout_mode = 3
@@ -49,3 +50,8 @@ offset_top = -648.0
 offset_right = 1152.0
 mouse_filter = 2
 texture = ExtResource("2_dqudy")
+
+[node name="BossIndicator" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1115, 64)
+texture = ExtResource("4_fnwws")

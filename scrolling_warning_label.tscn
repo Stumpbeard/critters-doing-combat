@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn2hykktkfjon"]
+
+[ext_resource type="Texture2D" uid="uid://dwdaidm7o6fdn" path="res://danger-banner.png" id="1_p8aoe"]
+[ext_resource type="Script" path="res://scrolling_warning_label.gd" id="2_sn3re"]
+
+[node name="ScrollingWarningLabel" type="Sprite2D"]
+texture_repeat = 2
+position = Vector2(-1152, 2.08165e-12)
+texture = ExtResource("1_p8aoe")
+centered = false
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 3456, 144)
+script = ExtResource("2_sn3re")

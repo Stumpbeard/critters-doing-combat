@@ -9,3 +9,4 @@ max_health = 6
 current_health = 6
 damage_value = [1, 4]
 critter_type = 3
+status_types = Array[int]([2])

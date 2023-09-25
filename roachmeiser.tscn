@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpddau78meoou"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_6g20p"]
+[ext_resource type="Texture2D" uid="uid://cptvx25idbw4q" path="res://roachmeiser.png" id="2_317sl"]
+
+[node name="Roachmeiser" instance=ExtResource("1_6g20p")]
+texture = ExtResource("2_317sl")
+offset = Vector2(2.08165e-12, -36)
+max_health = 25
+current_health = 25
+attack_speed = 3.0
+damage_value = [6, 12]
+critter_type = 4
+status_types = Array[int]([1, 0])

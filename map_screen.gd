@@ -1,6 +1,7 @@
 extends Control
 
 signal arrived_at_destination
+signal go_to_bodega
 
 enum Places { CITY, PIZZERIA, BRIDGE }
 
@@ -118,3 +119,7 @@ func _on_bridge_map_selector_map_button_clicked():
 			tween.tween_method($BridgeToPizzaPath/PlayerFollower.set_progress_ratio, 1.0, 0.0, 1.0)
 			tween.tween_callback(end_trip.bind("bridge"))
 			player_at = Places.BRIDGE
+
+
+func _on_bodega_run_button_bodega_button_pressed():
+	emit_signal("go_to_bodega")

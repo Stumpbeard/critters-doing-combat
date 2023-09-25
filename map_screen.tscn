@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbkibmo11scwy"]
+[gd_scene load_steps=11 format=3 uid="uid://cbkibmo11scwy"]
 
 [ext_resource type="Script" path="res://map_screen.gd" id="1_rqhi0"]
 [ext_resource type="Texture2D" uid="uid://chysl4xqvx7s5" path="res://subway-map.png" id="1_sappg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://deef5wfohxxa3" path="res://city_map_selector.tscn" id="3_m22mx"]
 [ext_resource type="PackedScene" uid="uid://bkuc6xk82r1c7" path="res://bridge_map_selector.tscn" id="4_2eeva"]
 [ext_resource type="Texture2D" uid="uid://c35vdosodfbcw" path="res://ratler.png" id="6_stwxy"]
+[ext_resource type="PackedScene" uid="uid://bvik8rb4phvon" path="res://bodega_run_button.tscn" id="7_vin1q"]
 
 [sub_resource type="Curve2D" id="Curve2D_0tfol"]
 _data = {
@@ -50,6 +51,9 @@ position = Vector2(470, 295)
 [node name="BridgeMapSelector" parent="." instance=ExtResource("4_2eeva")]
 position = Vector2(602, 496)
 
+[node name="BodegaRunButton" parent="." instance=ExtResource("7_vin1q")]
+position = Vector2(1000, 584)
+
 [node name="BridgeToCityPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_0tfol")
 
@@ -89,3 +93,4 @@ texture = ExtResource("6_stwxy")
 [connection signal="map_button_clicked" from="PizzeriaMapSelector" to="." method="_on_pizzeria_map_selector_map_button_clicked"]
 [connection signal="map_button_clicked" from="CityMapSelector" to="." method="_on_city_map_selector_map_button_clicked"]
 [connection signal="map_button_clicked" from="BridgeMapSelector" to="." method="_on_bridge_map_selector_map_button_clicked"]
+[connection signal="bodega_button_pressed" from="BodegaRunButton" to="." method="_on_bodega_run_button_bodega_button_pressed"]

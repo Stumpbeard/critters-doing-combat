@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://di68e17bafb4a"]
+
+[ext_resource type="Texture2D" uid="uid://b1r20hvbdnykc" path="res://shop-bg.png" id="1_rvq6u"]
+[ext_resource type="Texture2D" uid="uid://basoqtcwu3ppc" path="res://shop-keep-speech-bubble.png" id="2_6igjl"]
+[ext_resource type="Script" path="res://shop.gd" id="2_vdenw"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="3_542k6"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="4_s2b23"]
+[ext_resource type="PackedScene" uid="uid://5u8n8r0pqqau" path="res://shop_buy_menu.tscn" id="6_634k0"]
+[ext_resource type="PackedScene" uid="uid://bkjosqppfqcd4" path="res://ratler.tscn" id="7_com1m"]
+[ext_resource type="PackedScene" uid="uid://ri1cqbib30wl" path="res://leave_button.tscn" id="8_p5y76"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dl487"]
+resource_local_to_scene = true
+font = ExtResource("4_s2b23")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[node name="Shop" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("1_rvq6u")
+script = ExtResource("2_vdenw")
+
+[node name="SpeechBubble" type="Sprite2D" parent="."]
+position = Vector2(922, 266)
+texture = ExtResource("2_6igjl")
+
+[node name="TypingText" parent="SpeechBubble" instance=ExtResource("3_542k6")]
+offset_left = -148.0
+offset_top = -62.0
+offset_right = -212.0
+offset_bottom = -98.0
+text = "What's good,
+boss?"
+label_settings = SubResource("LabelSettings_dl487")
+text_size = 64
+text_color = Color(0, 0, 0, 1)
+
+[node name="ShopBuyMenu" parent="." instance=ExtResource("6_634k0")]
+position = Vector2(277, 323)
+
+[node name="HoppingRatler" parent="." instance=ExtResource("7_com1m")]
+position = Vector2(1076, 600)
+in_shop_mode = true
+
+[node name="LeaveButton" parent="." instance=ExtResource("8_p5y76")]
+position = Vector2(999, 63)
+
+[connection signal="text_done_displaying" from="SpeechBubble/TypingText" to="." method="_on_typing_text_text_done_displaying"]
+[connection signal="bought_hp" from="ShopBuyMenu" to="." method="_on_shop_buy_menu_bought_hp"]
+[connection signal="bought_speed" from="ShopBuyMenu" to="." method="_on_shop_buy_menu_bought_speed"]
+[connection signal="bought_strength" from="ShopBuyMenu" to="." method="_on_shop_buy_menu_bought_strength"]

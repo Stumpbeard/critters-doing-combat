@@ -4,7 +4,7 @@ signal attacked
 signal hero_died
 signal enemy_died
 
-enum Critters { RATLER, PIDGE_PODGE, PIZZALING, GULLMEYER, ROACHMEISER, RATOCOPTER, BAGGO }
+enum Critters { RATLER, PIDGE_PODGE, PIZZALING, GULLMEYER, ROACHMEISER, RATOCOPTER, BAGGO, MOUSLE, COFFEENY }
 enum Types { RODENT, TRASH, BIRD, HOLY, DEVIL }
 
 @export var is_villain = false

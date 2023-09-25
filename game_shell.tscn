@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw468y6s1rd0f"]
+[gd_scene load_steps=4 format=3 uid="uid://cw468y6s1rd0f"]
 
 [ext_resource type="Script" path="res://game_shell.gd" id="1_kbsvt"]
 [ext_resource type="PackedScene" uid="uid://b5pthvjwwk5wk" path="res://intro_screen.tscn" id="1_ou5oh"]
+[ext_resource type="PackedScene" uid="uid://06mg60yat2qo" path="res://critter_pick.tscn" id="2_odlu0"]
 
 [node name="GameShell" type="Control"]
 layout_mode = 3
@@ -12,6 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_kbsvt")
+
+[node name="CritterPick" parent="." instance=ExtResource("2_odlu0")]
+layout_mode = 1
 
 [node name="IntroScreen" parent="." instance=ExtResource("1_ou5oh")]
 layout_mode = 1
@@ -27,4 +31,5 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
+[connection signal="critter_chosen" from="CritterPick" to="." method="_on_critter_pick_critter_chosen"]
 [connection signal="start_game" from="IntroScreen" to="." method="_on_intro_screen_start_game"]

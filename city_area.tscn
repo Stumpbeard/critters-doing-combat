@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bskdvt4sipe0v"]
+[gd_scene load_steps=5 format=3 uid="uid://bskdvt4sipe0v"]
 
 [ext_resource type="PackedScene" uid="uid://blbqohwbtfii1" path="res://game.tscn" id="1_di7p8"]
 [ext_resource type="Script" path="res://city_area.gd" id="2_dd77r"]
+[ext_resource type="PackedScene" uid="uid://cna3iqsht4uxl" path="res://mousle.tscn" id="3_0ucmb"]
 [ext_resource type="PackedScene" uid="uid://bdgln3d0y1rt8" path="res://rat_o_copter.tscn" id="3_148xa"]
 
 [node name="CityArea" instance=ExtResource("1_di7p8")]
 script = ExtResource("2_dd77r")
 
 [node name="BattleBox" parent="." index="1"]
+enemy_scene = ExtResource("3_0ucmb")
 boss_scene = ExtResource("3_148xa")

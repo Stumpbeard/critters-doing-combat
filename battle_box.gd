@@ -5,6 +5,7 @@ signal run_away
 signal heal_used
 signal killed_boss
 
+@export var player_scene: PackedScene = preload("res://ratler.tscn")
 @export var enemy_scene: PackedScene = preload("res://pidge_podge.tscn")
 @export var boss_scene: PackedScene = preload("res://roachmeiser.tscn")
 
@@ -13,6 +14,7 @@ var level_up_scene = preload("res://level_up_pop_up.tscn")
 var enemies_killed = {}
 var level_info = {"level": 1, "to_next_level": 1, "hp": 0, "strength": 0, "speed": 0, "kill_dollars": 0}
 var running_away
+var player
 
 var special_attack_readied = false
 
@@ -26,6 +28,7 @@ func _ready():
 	add_child(enemy)
 	enemy.connect("attacked", _on_attacked)
 	enemy.connect("enemy_died", _on_enemy_died)
+	player = player_scene.instantiate()
 
 
 func _on_enemy_died(critter_type, was_boss=false):
@@ -45,6 +48,10 @@ func _on_enemy_died(critter_type, was_boss=false):
 			enemy_name = "Rat-O-Copter"
 		6:
 			enemy_name = "Baggo"
+		7:
+			enemy_name = "Mousle"
+		8:
+			enemy_name = "Coffeeny"
 	if enemy_name in enemies_killed:
 		enemies_killed[enemy_name] += 1
 	else:

@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://06mg60yat2qo"]
+
+[ext_resource type="Texture2D" uid="uid://ms8n1m4of7ro" path="res://professor.png" id="1_3qfef"]
+[ext_resource type="Script" path="res://critter_pick.gd" id="1_5ky12"]
+[ext_resource type="Texture2D" uid="uid://cog5hs7qip2gd" path="res://select-circle.png" id="2_658vn"]
+[ext_resource type="Texture2D" uid="uid://crjrunb50mql4" path="res://prof-speech-bubble.png" id="3_kh5mh"]
+[ext_resource type="Texture2D" uid="uid://c35vdosodfbcw" path="res://ratler.png" id="4_8jr6m"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="4_m67vl"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="5_0gi8d"]
+[ext_resource type="Texture2D" uid="uid://5p5smus6yekq" path="res://coffeeny.png" id="5_jg217"]
+[ext_resource type="Texture2D" uid="uid://dcib4rbcrshxd" path="res://pidgepodge.png" id="6_8uxen"]
+[ext_resource type="PackedScene" uid="uid://crcjwi7yays2c" path="res://choose_critter_button.tscn" id="10_wxd6a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_48t4x"]
+resource_local_to_scene = true
+font = ExtResource("5_0gi8d")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddqct"]
+radius = 93.0054
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0kfif"]
+radius = 97.0052
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmagu"]
+radius = 91.0879
+
+[sub_resource type="LabelSettings" id="LabelSettings_mde8s"]
+resource_local_to_scene = true
+font = ExtResource("5_0gi8d")
+font_size = 64
+
+[node name="CritterPick" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_5ky12")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.133333, 0.12549, 0.203922, 1)
+
+[node name="Professor" type="Sprite2D" parent="."]
+position = Vector2(1060, 467)
+texture = ExtResource("1_3qfef")
+
+[node name="Bubble" type="Sprite2D" parent="Professor"]
+position = Vector2(-66, -230)
+texture = ExtResource("3_kh5mh")
+
+[node name="TypingText" parent="Professor/Bubble" instance=ExtResource("4_m67vl")]
+offset_left = -131.0
+offset_top = -60.0
+offset_right = -172.0
+offset_bottom = -142.0
+text = "Pick a critter,
+my guy."
+label_settings = SubResource("LabelSettings_48t4x")
+text_size = 48
+text_color = Color(0, 0, 0, 1)
+
+[node name="Wheel" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_658vn")
+
+[node name="RatlerSelect" type="Area2D" parent="Wheel"]
+position = Vector2(22, -219)
+
+[node name="Sprite2D" type="Sprite2D" parent="Wheel/RatlerSelect"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_8jr6m")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/RatlerSelect"]
+shape = SubResource("CircleShape2D_ddqct")
+
+[node name="CoffeenySelect" type="Area2D" parent="Wheel"]
+position = Vector2(199, 117)
+
+[node name="Sprite2D" type="Sprite2D" parent="Wheel/CoffeenySelect"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_jg217")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/CoffeenySelect"]
+shape = SubResource("CircleShape2D_0kfif")
+
+[node name="PidgePodgeSelect" type="Area2D" parent="Wheel"]
+position = Vector2(-193, 107)
+
+[node name="Sprite2D" type="Sprite2D" parent="Wheel/PidgePodgeSelect"]
+scale = Vector2(2, 2)
+texture = ExtResource("6_8uxen")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel/PidgePodgeSelect"]
+shape = SubResource("CircleShape2D_xmagu")
+
+[node name="ChosenText" parent="." instance=ExtResource("4_m67vl")]
+layout_mode = 1
+offset_left = 13.0
+offset_top = 55.0
+offset_right = -811.0
+offset_bottom = -459.0
+text = "Ratler
+Type: Rodent"
+label_settings = SubResource("LabelSettings_mde8s")
+text_size = 64
+reveal = false
+
+[node name="ChooseCritterButton" parent="." instance=ExtResource("10_wxd6a")]
+position = Vector2(170, 242)
+
+[connection signal="input_event" from="Wheel/RatlerSelect" to="." method="_on_ratler_select_input_event"]
+[connection signal="input_event" from="Wheel/CoffeenySelect" to="." method="_on_coffeeny_select_input_event"]
+[connection signal="input_event" from="Wheel/PidgePodgeSelect" to="." method="_on_pidge_podge_select_input_event"]
+[connection signal="choose_critter_button_pressed" from="ChooseCritterButton" to="." method="_on_choose_critter_button_choose_critter_button_pressed"]

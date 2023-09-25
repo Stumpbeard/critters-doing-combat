@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://crcjwi7yays2c"]
+
+[ext_resource type="Script" path="res://choose_critter_button.gd" id="1_mxbk2"]
+[ext_resource type="Texture2D" uid="uid://dcaa2giaxtftn" path="res://choose-button.png" id="1_wxcgv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ds080"]
+radius = 65.0
+height = 298.0
+
+[node name="ChooseCritterButton" type="Area2D"]
+script = ExtResource("1_mxbk2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wxcgv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ds080")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

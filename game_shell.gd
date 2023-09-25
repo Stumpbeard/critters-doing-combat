@@ -18,17 +18,10 @@ var coming_from = ''
 
 var level_up_info = {"level": 1, "to_next_level": 1, "hp": 0, "strength": 0, "speed": 0, "kill_dollars": 0}
 
-
 func _on_intro_screen_start_game():
-	create_tween().tween_property($BlackFade, "color:a", 1.0, 0.2)
-	await get_tree().create_timer(0.2).timeout
-	var city_level = city_level_scene.instantiate()
-	city_level.connect("battle_over", _on_battle_to_subway)
-	city_level.get_node("BattleBox").connect("heal_used", _on_heal_used)
-	add_child(city_level)
-	battle_scene = city_level
-	$IntroScreen.queue_free()
-	create_tween().tween_property($BlackFade, "color:a", 0.0, 0.2)
+	var tween = create_tween()
+	tween.tween_property($IntroScreen, "position:y", -648, 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+
 	
 func _on_heal_used():
 	heals = max(0, heals - 1)
@@ -126,3 +119,16 @@ func _on_bought_speed():
 	level_up_info["kill_dollars"] -= level_up_info["speed"] + 1
 	level_up_info["speed"] += 1
 	level_up_info["level"] += 1
+
+
+func _on_critter_pick_critter_chosen(critter_type):
+	create_tween().tween_property($BlackFade, "color:a", 1.0, 0.2)
+	await get_tree().create_timer(0.2).timeout
+	var city_level = city_level_scene.instantiate()
+	city_level.connect("battle_over", _on_battle_to_subway)
+	city_level.get_node("BattleBox").connect("heal_used", _on_heal_used)
+	add_child(city_level)
+	battle_scene = city_level
+	$IntroScreen.queue_free()
+	$CritterPick.queue_free()
+	create_tween().tween_property($BlackFade, "color:a", 0.0, 0.2)

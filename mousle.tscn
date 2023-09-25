@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cna3iqsht4uxl"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_1f6eg"]
+[ext_resource type="Texture2D" uid="uid://bft5gida7p5ym" path="res://mousle.png" id="2_w0bmf"]
+
+[node name="Mousle" instance=ExtResource("1_1f6eg")]
+texture = ExtResource("2_w0bmf")
+max_health = 5
+current_health = 5
+damage_value = [1, 1]
+critter_type = 7

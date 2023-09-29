@@ -12,6 +12,8 @@ var heat_ratio = 0.0
 
 var in_boss_mode = false
 
+var stopped = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,8 +29,13 @@ func _ready():
 	skull_tween.tween_property($BossIndicator, "scale", Vector2(1.0, 1.0), 0.75).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 
 
+func stop():
+	stopped = true
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
+	if stopped:
+		return
 	if !in_boss_mode:
 		$SpawnTimerFill.size.y += spawn_timer_speed
 		$HeatBarFill.size.y = min($HeatBarFill.size.y + heat_bar_speed, screen_height * 0.9)

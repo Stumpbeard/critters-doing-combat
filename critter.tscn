@@ -1,12 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh2n0m85774ex"]
+[gd_scene load_steps=9 format=3 uid="uid://bh2n0m85774ex"]
 
 [ext_resource type="Texture2D" uid="uid://c35vdosodfbcw" path="res://ratler.png" id="1_tu147"]
 [ext_resource type="Script" path="res://critter.gd" id="2_3o8u6"]
 [ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_2jgu1"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="4_e5doo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jylkg"]
 font = ExtResource("3_2jgu1")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_oxdil"]
+resource_local_to_scene = true
+font = ExtResource("3_2jgu1")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xj0n2"]
+resource_local_to_scene = true
+font = ExtResource("3_2jgu1")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5v4b"]
+resource_local_to_scene = true
+radius = 32.0156
 
 [node name="Critter" type="Sprite2D"]
 texture = ExtResource("1_tu147")
@@ -24,4 +42,40 @@ vertical_alignment = 1
 
 [node name="AttackTimer" type="Timer" parent="."]
 
+[node name="HoverInfo" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -64.0
+offset_right = 3.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Name" parent="HoverInfo" instance=ExtResource("4_e5doo")]
+layout_mode = 2
+text = "Ratler"
+label_settings = SubResource("LabelSettings_oxdil")
+text_size = 32
+reveal = false
+
+[node name="Type" parent="HoverInfo" instance=ExtResource("4_e5doo")]
+layout_mode = 2
+text = "Rodent"
+label_settings = SubResource("LabelSettings_xj0n2")
+reveal = false
+
+[node name="HoverActivation" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverActivation"]
+shape = SubResource("CircleShape2D_u5v4b")
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="input_event" from="HoverActivation" to="." method="_on_hover_activation_input_event"]
+[connection signal="mouse_entered" from="HoverActivation" to="." method="_on_hover_activation_mouse_entered"]
+[connection signal="mouse_exited" from="HoverActivation" to="." method="_on_hover_activation_mouse_exited"]

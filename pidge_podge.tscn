@@ -1,13 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://ec5p5uqb50mp"]
+[gd_scene load_steps=7 format=3 uid="uid://ec5p5uqb50mp"]
 
 [ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_ynpqt"]
 [ext_resource type="Texture2D" uid="uid://dcib4rbcrshxd" path="res://pidgepodge.png" id="2_l8ev2"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_4asrp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dj48k"]
+resource_local_to_scene = true
+font = ExtResource("3_4asrp")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgi4h"]
+resource_local_to_scene = true
+font = ExtResource("3_4asrp")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n0kvc"]
+resource_local_to_scene = true
+radius = 32.0156
 
 [node name="PidgePodge" instance=ExtResource("1_ynpqt")]
 texture = ExtResource("2_l8ev2")
-max_health = 4
-current_health = 4
-attack_speed = 1.3
-damage_value = [1, 2]
+damage_value = [1, 100]
 critter_type = 1
 status_types = Array[int]([2])
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_dj48k")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_jgi4h")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_n0kvc")

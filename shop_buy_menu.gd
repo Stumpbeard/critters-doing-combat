@@ -140,3 +140,23 @@ func _on_speed_select_input_event(viewport, event, shape_idx):
 				$SpeedUpCost.text = "%s" % [1 + level_up_info["speed"]]
 				$KillsToSpend.text = "Kills: %s" % [level_up_info["kill_dollars"]]
 				$TotalLevel.text = "Lv%s" % [1 + level_up_info["hp"] + level_up_info["strength"] + level_up_info["speed"]]
+
+
+func _on_moves_select_mouse_entered():
+	if !$Selector.visible:
+		$Selector.position = Vector2(-222, 199)
+		$Selector.visible = true
+	else:
+		create_tween().tween_property($Selector, "position", Vector2(-222, 199), 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+
+func _on_moves_select_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if !event.pressed && event.button_index == 1:
+			if !$ShopMovesBox.visible:
+				$ShopMovesBox.visible = true
+				create_tween().tween_property($ShopMovesBox, "scale", Vector2(1, 1), 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+			else:
+				var tween = create_tween()
+				tween.tween_property($ShopMovesBox, "scale", Vector2(0, 0), 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+				tween.tween_callback($ShopMovesBox.set_visible.bind(false))

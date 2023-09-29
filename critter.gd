@@ -1,11 +1,12 @@
+class_name Critter
 extends Sprite2D
 
 signal attacked
 signal hero_died
 signal enemy_died
 
-enum Critters { RATLER, PIDGE_PODGE, PIZZALING, GULLMEYER, ROACHMEISER, RATOCOPTER, BAGGO, MOUSLE, COFFEENY }
-enum Types { RODENT, TRASH, BIRD, HOLY, DEVIL }
+enum Critters { RATLER, PIDGE_PODGE, PIZZALING, GULLMEYER, ROACHMEISER, RATOCOPTER, BAGGO, MOUSLE, COFFEENY, FERROTH, DEMOGATOR }
+enum Types { RODENT, TRASH, BIRD, HOLY, DEVIL, NORMAL }
 
 @export var is_villain = false
 @export var is_hero = false
@@ -42,6 +43,52 @@ func _ready():
 		scale = Vector2(2, 2)
 		$AttackTimer.stop()
 		jump()
+	set_hover_info()
+	
+func set_hover_info():
+	match critter_type:
+		Critters.RATLER:
+			$HoverInfo/Name.text = "Ratler"
+		Critters.PIDGE_PODGE:
+			$HoverInfo/Name.text = "PidgePodge"
+		Critters.COFFEENY:
+			$HoverInfo/Name.text = "Coffeeny"
+		Critters.PIZZALING:
+			$HoverInfo/Name.text = "Pizzaling"
+		Critters.GULLMEYER:
+			$HoverInfo/Name.text = "Gullmeyer"
+		Critters.MOUSLE:
+			$HoverInfo/Name.text = "Mousle"
+		Critters.ROACHMEISER:
+			$HoverInfo/Name.text = "Roachmeiser"
+		Critters.RATOCOPTER:
+			$HoverInfo/Name.text = "Rat-O-Copter"
+		Critters.BAGGO:
+			$HoverInfo/Name.text = "Baggo"
+	var first_type = status_types[0]
+	match first_type:
+		Types.RODENT:
+			$HoverInfo/Type.text = "Rodent"
+		Types.BIRD:
+			$HoverInfo/Type.text = "Bird"
+		Types.TRASH:
+			$HoverInfo/Type.text = "Trash"
+		Types.HOLY:
+			$HoverInfo/Type.text = "Holy"
+		Types.DEVIL:
+			$HoverInfo/Type.text = "Devil"
+	for type in status_types.slice(1):
+		match type:
+			Types.RODENT:
+				$HoverInfo/Type.text += "/Rodent"
+			Types.BIRD:
+				$HoverInfo/Type.text += "/Bird"
+			Types.TRASH:
+				$HoverInfo/Type.text += "/Trash"
+			Types.HOLY:
+				$HoverInfo/Type.text += "/Holy"
+			Types.DEVIL:
+				$HoverInfo/Type.text += "/Devil"
 		
 func jump():
 	var tween = create_tween()
@@ -218,3 +265,50 @@ func dismiss_special_attack_glow():
 	var blue_glow = get_node("BlueLayer")
 	create_tween().tween_property(blue_glow, "scale", Vector2(1.0, 1.0), 0.1)
 	
+func get_resistances():
+	var resists = {
+		"weak": [],
+		"resistant": []
+	}
+	# Weaknesses pass
+	for type in status_types:
+		match type:
+			Types.RODENT:
+				resists["weak"].append(Types.BIRD)
+			Types.BIRD:
+				resists["weak"].append(Types.TRASH)
+			Types.TRASH:
+				resists["weak"].append(Types.RODENT)
+	# Resistance overwrite
+	for type in status_types:
+		match type:
+			Types.RODENT:
+				if Types.TRASH in resists["weak"]:
+					resists["weak"].erase(Types.TRASH)
+				else:
+					resists['resistant'].append(Types.TRASH)
+			Types.BIRD:
+				if Types.RODENT in resists["weak"]:
+					resists["weak"].erase(Types.RODENT)
+				else:
+					resists['resistant'].append(Types.RODENT)
+			Types.TRASH:
+				if Types.BIRD in resists["weak"]:
+					resists["weak"].erase(Types.BIRD)
+				else:
+					resists['resistant'].append(Types.BIRD)
+	return resists
+
+
+func _on_hover_activation_mouse_entered():
+	$HoverInfo.visible = true
+	$HoverInfo.global_position = get_viewport().get_mouse_position()
+
+
+func _on_hover_activation_mouse_exited():
+	$HoverInfo.visible = false
+
+
+func _on_hover_activation_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseMotion:
+		$HoverInfo.global_position = get_viewport().get_mouse_position()

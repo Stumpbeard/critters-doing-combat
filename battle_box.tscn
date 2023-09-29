@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dbnft6o58ne2q" path="res://heal_button.tscn" id="2_8ed25"]
 [ext_resource type="Script" path="res://battle_box.gd" id="2_lqiro"]
 [ext_resource type="PackedScene" uid="uid://wsfg4uos2q42" path="res://run_button.tscn" id="4_eki85"]
-[ext_resource type="PackedScene" uid="uid://bkjosqppfqcd4" path="res://ratler.tscn" id="4_wkaae"]
 [ext_resource type="PackedScene" uid="uid://e8pe3m78hakb" path="res://spawn_system.tscn" id="6_u23bm"]
+[ext_resource type="PackedScene" uid="uid://dw6uwyqennww1" path="res://moves_box.tscn" id="6_y8wri"]
 [ext_resource type="PackedScene" uid="uid://b0q4xrdyxrfof" path="res://special_move_button.tscn" id="7_qslq5"]
 
 [node name="BattleBox" type="TextureRect"]
@@ -24,18 +24,17 @@ position = Vector2(720, 504)
 [node name="SpecialMoveButton" parent="." instance=ExtResource("7_qslq5")]
 position = Vector2(576, 475)
 
-[node name="Ratler" parent="." groups=["player"] instance=ExtResource("4_wkaae")]
-position = Vector2(468, 324)
-is_hero = true
+[node name="MovesBox" parent="." instance=ExtResource("6_y8wri")]
+z_index = 1
+position = Vector2(916, 526)
 
 [node name="SpawnSystem" parent="." instance=ExtResource("6_u23bm")]
 layout_mode = 1
 spawn_timer_speed = 2.0
 heat_bar_speed = 0.5
+metadata/_edit_lock_ = true
 
 [connection signal="heal_pressed" from="HealButton" to="." method="_on_heal_button_heal_pressed"]
 [connection signal="finished_charging" from="RunButton" to="." method="_on_run_button_finished_charging"]
 [connection signal="moves_pressed" from="SpecialMoveButton" to="." method="_on_special_move_button_moves_pressed"]
-[connection signal="attacked" from="Ratler" to="." method="_on_attacked"]
-[connection signal="hero_died" from="Ratler" to="." method="_on_ratler_hero_died"]
 [connection signal="spawn_enemy" from="SpawnSystem" to="." method="_on_spawn_system_spawn_enemy"]

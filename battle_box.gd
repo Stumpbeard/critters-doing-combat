@@ -28,8 +28,22 @@ func _ready():
 	add_child(enemy)
 	enemy.connect("attacked", _on_attacked)
 	enemy.connect("enemy_died", _on_enemy_died)
-	player = player_scene.instantiate()
+	if !player:
+		player = player_scene.instantiate()
+		player.position = Vector2(468, 324)
+		player.is_hero = true
+		player.connect("attacked", _on_attacked)
+		player.connect("hero_died", _on_hero_died)
+		add_child(player)
 
+func set_player(player_type):
+	player_scene = player_type
+	player = player_scene.instantiate()
+	player.position = Vector2(468, 324)
+	player.is_hero = true
+	player.connect("attacked", _on_attacked)
+	player.connect("hero_died", _on_hero_died)
+	add_child(player)
 
 func _on_enemy_died(critter_type, was_boss=false):
 	var enemy_name = ""
@@ -52,6 +66,10 @@ func _on_enemy_died(critter_type, was_boss=false):
 			enemy_name = "Mousle"
 		8:
 			enemy_name = "Coffeeny"
+		9:
+			enemy_name = "Ferroth"
+		10:
+			enemy_name = "Demogator"
 	if enemy_name in enemies_killed:
 		enemies_killed[enemy_name] += 1
 	else:
@@ -70,14 +88,14 @@ func get_live_enemies():
 
 func _physics_process(_delta):
 	var live_enemies = get_live_enemies()
-	if !$Ratler.is_dying && !running_away:
+	if !player.is_dying && !running_away:
 		if live_enemies:
-			$Ratler.is_attacking = true
+			player.is_attacking = true
 		else:
-			$Ratler.is_attacking = false
+			player.is_attacking = false
 	if !running_away:
 		for enemy in live_enemies:
-			if !$Ratler.is_dying && !enemy.is_boss_entering:
+			if !player.is_dying && !enemy.is_boss_entering:
 				enemy.is_attacking = true
 			else:
 				enemy.is_attacking = false
@@ -90,27 +108,43 @@ func _on_attacked(damage, is_villain):
 			var damage_to_send = damage
 			var used_special_attack = false
 			if special_attack_readied:
-				damage_to_send *= 2
+				var player_attack_type = $MovesBox.get_selected_move()
+				var enemy_resists = enemies[0].get_resistances()
+				var fading_text = fading_text_scene.instantiate()
+				var damage_mult = 1.25
+				fading_text.text = "Nice!"
+				for weakness in enemy_resists["weak"]:
+					if player_attack_type == weakness:
+						damage_mult *= 2.0
+				for resistance in enemy_resists["resistant"]:
+					if player_attack_type == resistance:
+						damage_mult *= 0.5
+				damage_to_send *= damage_mult
+				damage_to_send = round(damage_to_send)
+				if damage_mult >= 2.0:
+					fading_text.text = "SUPER!"
+				elif damage_mult < 1.0:
+					fading_text.text = "Resist..."
 				special_attack_readied = false
 				used_special_attack = true
 				$SpecialMoveButton.trigger_fill()
-				var fading_text = fading_text_scene.instantiate()
+				
 				fading_text.global_position = enemies[0].global_position
 				add_child(fading_text)
-				$Ratler.dismiss_special_attack_glow()
+				player.dismiss_special_attack_glow()
 			enemies[0].take_damage(damage_to_send, used_special_attack)
 	else:
-		$Ratler.take_damage(damage)
+		player.take_damage(damage)
 
 
 func _on_heal_button_heal_pressed():
-	if !$Ratler.is_dying:
-		$Ratler.heal_up()
+	if !player.is_dying:
+		player.heal_up()
 		emit_signal("heal_used")
 
 
 func _on_spawn_system_spawn_enemy():
-	if !$Ratler.is_dying:
+	if !player.is_dying:
 		spawn_enemy()
 
 
@@ -143,22 +177,23 @@ func spawn_boss():
 	boss.is_boss_entering = false
 
 
-func _on_ratler_hero_died():
+func _on_hero_died():
+	$SpawnSystem.stop()
 	emit_signal("battle_over")
 
 
 func _on_run_button_finished_charging():
-	if $Ratler.is_dying:
+	if player.is_dying:
 		return
-	$Ratler.flip_h = true
+	player.flip_h = true
 	var tween = create_tween()
-	tween.tween_property($Ratler, "position:x", -72.0, 0.5).set_trans(Tween.TRANS_QUAD).set_ease(
+	tween.tween_property(player, "position:x", -72.0, 0.5).set_trans(Tween.TRANS_QUAD).set_ease(
 		Tween.EASE_IN
 	)
 	running_away = true
 	for enemy in get_live_enemies():
 		enemy.is_attacking = false
-	$Ratler.is_attacking = false
+	player.is_attacking = false
 	emit_signal("run_away", $SpawnSystem.get_heat_ratio())
 
 
@@ -170,12 +205,12 @@ func set_player_info(new_level_info, heals):
 	level_info = new_level_info
 	$HealButton.set_heals(heals)
 	for level in range(level_info["hp"]):
-		$Ratler.increase_hp()
+		player.increase_hp()
 	for level in range(level_info["strength"]):
-		$Ratler.increase_strength()
+		player.increase_strength()
 	for level in range(level_info["speed"]):
-		$Ratler.increase_speed()
-	$Ratler.heal_up()
+		player.increase_speed()
+	player.heal_up()
 
 
 func count_killed_enemies():
@@ -199,24 +234,24 @@ func do_level_up_math():
 	var type_of_level = level_info["level"] % 3
 	match type_of_level:
 		2:
-			$Ratler.increase_hp()
+			player.increase_hp()
 			level_info["hp"] += 1
 		0:
-			$Ratler.increase_strength()
+			player.increase_strength()
 			level_info["strength"] += 1
 		1:
-			$Ratler.increase_speed()
+			player.increase_speed()
 			level_info["speed"] += 1
 
 
 func level_up():
-	$Ratler.level_up()
+	player.level_up()
 	var level_up_pop = level_up_scene.instantiate()
-	level_up_pop.position = $Ratler.position
+	level_up_pop.position = player.position
 	add_child(level_up_pop)
 	do_level_up_math()
 
 
 func _on_special_move_button_moves_pressed():
 	special_attack_readied = true
-	$Ratler.special_attack_glow()
+	player.special_attack_glow()

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://s7jhn3xo7qgh"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_roo2f"]
+[ext_resource type="Texture2D" uid="uid://b57buxmo7abfk" path="res://demogator.png" id="2_l8f0f"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_kwyyr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1eg3p"]
+resource_local_to_scene = true
+font = ExtResource("3_kwyyr")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8csg4"]
+resource_local_to_scene = true
+font = ExtResource("3_kwyyr")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v7xhb"]
+resource_local_to_scene = true
+radius = 32.0156
+
+[node name="Demogator" instance=ExtResource("1_roo2f")]
+texture = ExtResource("2_l8f0f")
+max_health = 5
+current_health = 5
+critter_type = 10
+status_types = Array[int]([1, 4])
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_1eg3p")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_8csg4")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_v7xhb")

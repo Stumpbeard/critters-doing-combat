@@ -8,10 +8,15 @@ enum Places { CITY, PIZZERIA, BRIDGE }
 @export var player_at: Places = Places.CITY
 @export var heat_ratios = {"city": 0.0, "bridge": 0.0, "pizzeria": 0.0}
 
+var player_scene = preload("res://ratler.tscn")
+
 var player_traveling = false
 
 
 func _ready():
+	$CityToPizzaPath/PlayerFollower/Sprite2D.texture = player_scene.instantiate().texture
+	$BridgeToCityPath/PlayerFollower/Sprite2D.texture = player_scene.instantiate().texture
+	$BridgeToPizzaPath/PlayerFollower/Sprite2D.texture = player_scene.instantiate().texture
 	match player_at:
 		Places.CITY:
 			$CityToPizzaPath/PlayerFollower.visible = true

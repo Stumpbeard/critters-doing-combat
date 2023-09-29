@@ -8,13 +8,10 @@ resource_local_to_scene = true
 font = ExtResource("1_e0g6g")
 
 [node name="TypingText" type="Label"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1119.0
-offset_bottom = -622.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 28.0
+offset_bottom = 19.0
+size_flags_horizontal = 4
+mouse_filter = 1
 text = "Test"
 label_settings = SubResource("LabelSettings_sw657")
 horizontal_alignment = 1

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cryk7r4103sui"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_gofh6"]
+[ext_resource type="Texture2D" uid="uid://jhye6kp2qxsc" path="res://ferroth.png" id="2_bv3yc"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="2_job0d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w12r3"]
+resource_local_to_scene = true
+font = ExtResource("2_job0d")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aqrec"]
+resource_local_to_scene = true
+font = ExtResource("2_job0d")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8p03"]
+resource_local_to_scene = true
+radius = 32.0156
+
+[node name="Ferroth" instance=ExtResource("1_gofh6")]
+texture = ExtResource("2_bv3yc")
+max_health = 5
+current_health = 5
+critter_type = 9
+status_types = Array[int]([0, 3])
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_w12r3")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_aqrec")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_j8p03")

@@ -1,0 +1,246 @@
+[gd_scene load_steps=17 format=3 uid="uid://bj2g7n5q6e3nx"]
+
+[ext_resource type="Texture2D" uid="uid://dg3efjyv41lce" path="res://move-buy-box.png" id="1_8aup2"]
+[ext_resource type="Script" path="res://shop_moves_box.gd" id="2_6lthq"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="2_sonh6"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_he58i"]
+[ext_resource type="Texture2D" uid="uid://b53q13021eu02" path="res://ratocopter.png" id="4_i23ib"]
+[ext_resource type="Texture2D" uid="uid://cecwaixl5t3vn" path="res://baggo.png" id="5_xhoqq"]
+[ext_resource type="Texture2D" uid="uid://cptvx25idbw4q" path="res://roachmeiser.png" id="6_hycb8"]
+[ext_resource type="Texture2D" uid="uid://jhye6kp2qxsc" path="res://ferroth.png" id="7_hehls"]
+[ext_resource type="Texture2D" uid="uid://b57buxmo7abfk" path="res://demogator.png" id="8_8r8nh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i6qq8"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_ewcsy"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_x6ouq"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uvlpg"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_otwlc"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqqwv"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_hjulc"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[node name="ShopMovesBox" type="Sprite2D"]
+position = Vector2(418, 314)
+texture = ExtResource("1_8aup2")
+script = ExtResource("2_6lthq")
+
+[node name="BigChomp" parent="." instance=ExtResource("2_sonh6")]
+offset_left = -143.0
+offset_top = -118.0
+offset_right = 43.0
+offset_bottom = -67.0
+text = "Big chomp"
+label_settings = SubResource("LabelSettings_i6qq8")
+text_size = 48
+reveal = false
+
+[node name="Cost" parent="BigChomp" instance=ExtResource("2_sonh6")]
+layout_mode = 0
+offset_left = 217.0
+offset_right = 256.0
+offset_bottom = 51.0
+text = "1x"
+label_settings = SubResource("LabelSettings_ewcsy")
+text_size = 48
+reveal = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BigChomp/Cost"]
+position = Vector2(68, 15)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_i23ib")
+flip_h = true
+
+[node name="SoldOut" parent="BigChomp" instance=ExtResource("2_sonh6")]
+visible = false
+layout_mode = 0
+offset_left = 203.0
+offset_top = 17.0
+offset_right = 315.0
+offset_bottom = 52.0
+rotation = -0.174533
+text = "Sold out!"
+label_settings = SubResource("LabelSettings_x6ouq")
+text_size = 32
+reveal = false
+
+[node name="Wingslap" parent="." instance=ExtResource("2_sonh6")]
+offset_left = -151.0
+offset_top = -71.0
+offset_right = 35.0
+offset_bottom = -20.0
+text = "Wingslap"
+label_settings = SubResource("LabelSettings_i6qq8")
+text_size = 48
+reveal = false
+
+[node name="Cost" parent="Wingslap" instance=ExtResource("2_sonh6")]
+layout_mode = 0
+offset_left = 224.0
+offset_right = 263.0
+offset_bottom = 51.0
+text = "1x"
+label_settings = SubResource("LabelSettings_uvlpg")
+text_size = 48
+reveal = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Wingslap/Cost"]
+position = Vector2(75, 24)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_xhoqq")
+flip_h = true
+
+[node name="SoldOut" parent="Wingslap" instance=ExtResource("2_sonh6")]
+visible = false
+offset_left = 203.0
+offset_top = 17.0
+offset_right = 315.0
+offset_bottom = 52.0
+rotation = -0.174533
+text = "Sold out!"
+label_settings = SubResource("LabelSettings_x6ouq")
+text_size = 32
+reveal = false
+
+[node name="Fatberg" parent="." instance=ExtResource("2_sonh6")]
+offset_left = -161.0
+offset_top = -22.0
+offset_right = 25.0
+offset_bottom = 29.0
+text = "Fatberg"
+label_settings = SubResource("LabelSettings_i6qq8")
+text_size = 48
+reveal = false
+
+[node name="Cost" parent="Fatberg" instance=ExtResource("2_sonh6")]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 1.0
+offset_right = 274.0
+offset_bottom = 52.0
+text = "1x"
+label_settings = SubResource("LabelSettings_otwlc")
+text_size = 48
+reveal = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Fatberg/Cost"]
+position = Vector2(69, 17)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_hycb8")
+flip_h = true
+
+[node name="SoldOut" parent="Fatberg" instance=ExtResource("2_sonh6")]
+visible = false
+offset_left = 203.0
+offset_top = 17.0
+offset_right = 315.0
+offset_bottom = 52.0
+rotation = -0.174533
+text = "Sold out!"
+label_settings = SubResource("LabelSettings_x6ouq")
+text_size = 32
+reveal = false
+
+[node name="Salvation" parent="." instance=ExtResource("2_sonh6")]
+offset_left = -147.0
+offset_top = 22.0
+offset_right = 39.0
+offset_bottom = 73.0
+text = "Salvation"
+label_settings = SubResource("LabelSettings_i6qq8")
+text_size = 48
+reveal = false
+
+[node name="Cost" parent="Salvation" instance=ExtResource("2_sonh6")]
+layout_mode = 0
+offset_left = 202.0
+offset_top = -1.0
+offset_right = 262.0
+offset_bottom = 50.0
+text = "10x"
+label_settings = SubResource("LabelSettings_qqqwv")
+text_size = 48
+reveal = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Salvation/Cost"]
+position = Vector2(94, 25)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("7_hehls")
+flip_h = true
+
+[node name="SoldOut" parent="Salvation" instance=ExtResource("2_sonh6")]
+visible = false
+offset_left = 203.0
+offset_top = 17.0
+offset_right = 315.0
+offset_bottom = 52.0
+rotation = -0.174533
+text = "Sold out!"
+label_settings = SubResource("LabelSettings_x6ouq")
+text_size = 32
+reveal = false
+
+[node name="Hellfire" parent="." instance=ExtResource("2_sonh6")]
+offset_left = -165.0
+offset_top = 66.0
+offset_right = 21.0
+offset_bottom = 117.0
+text = "Hellfire"
+label_settings = SubResource("LabelSettings_i6qq8")
+text_size = 48
+reveal = false
+
+[node name="Cost" parent="Hellfire" instance=ExtResource("2_sonh6")]
+layout_mode = 0
+offset_left = 220.0
+offset_right = 280.0
+offset_bottom = 51.0
+text = "10x"
+label_settings = SubResource("LabelSettings_hjulc")
+text_size = 48
+reveal = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Hellfire/Cost"]
+position = Vector2(88, 23)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_8r8nh")
+flip_h = true
+
+[node name="SoldOut" parent="Hellfire" instance=ExtResource("2_sonh6")]
+visible = false
+offset_left = 203.0
+offset_top = 17.0
+offset_right = 315.0
+offset_bottom = 52.0
+rotation = -0.174533
+text = "Sold out!"
+label_settings = SubResource("LabelSettings_x6ouq")
+text_size = 32
+reveal = false

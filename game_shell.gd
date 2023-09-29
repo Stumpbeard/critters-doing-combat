@@ -1,10 +1,21 @@
+class_name GameShell
 extends Control
+
+enum Moves {BIG_CHOMP, WINGSLAP, FATBERG, SALVATION, HELLFIRE}
+
+@export var bought_moves: Array[Moves] = []
 
 var city_level_scene: PackedScene = preload("res://city_area.tscn")
 var pizza_level_scene: PackedScene = preload("res://pizza_area.tscn")
 var bridge_level_scene: PackedScene = preload("res://bridge_area.tscn")
 var subway_scene: PackedScene = preload("res://map_screen.tscn")
 var bodega_scene: PackedScene = preload("res://shop.tscn")
+
+var ratler_scene = preload("res://ratler.tscn")
+var pidgepodge_scene = preload("res://pidge_podge.tscn")
+var coffeeny_scene = preload("res://coffeeny.tscn")
+
+var player_type
 
 var battle_scene = null
 var map_scene = null
@@ -25,6 +36,16 @@ func _on_intro_screen_start_game():
 	
 func _on_heal_used():
 	heals = max(0, heals - 1)
+	
+
+func chosen_player_type():
+	match player_type:
+		"Ratler":
+			return ratler_scene
+		"PidgePodge":
+			return pidgepodge_scene
+		"Coffeeny":
+			return coffeeny_scene
 
 
 func _on_battle_to_subway(from, heat_ratio):
@@ -38,6 +59,7 @@ func _on_battle_to_subway(from, heat_ratio):
 			continue
 		heat_ratios[heat] = max(0.0, heat_ratios[heat] - heat_ratio_diff / 2.0)
 	var subway_map = subway_scene.instantiate()
+	subway_map.player_scene = chosen_player_type()
 	subway_map.connect("arrived_at_destination", _on_arrived_at_destination)
 	subway_map.connect("go_to_bodega", _on_go_to_bodega)
 	subway_map.set_current_location(from)
@@ -62,6 +84,8 @@ func _on_arrived_at_destination(dest):
 		"bridge":
 			level = bridge_level_scene.instantiate()
 	level.connect("battle_over", _on_battle_to_subway)
+	level.get_node("BattleBox").connect("heal_used", _on_heal_used)
+	level.get_node("BattleBox").set_player(chosen_player_type())
 	level.set_heat_ratio(heat_ratios[dest])
 	battle_scene = level
 	battle_scene.set_enemies_killed(kills)
@@ -75,6 +99,7 @@ func _on_go_to_bodega():
 	create_tween().tween_property($BlackFade, "color:a", 1.0, 0.2)
 	await get_tree().create_timer(0.2).timeout
 	var bodega = bodega_scene.instantiate()
+	bodega.player_scene = chosen_player_type()
 	bodega.get_node("ShopBuyMenu").connect("bought_heal", _on_bought_heal)
 	bodega.get_node("ShopBuyMenu").connect("bought_hp", _on_bought_hp)
 	bodega.get_node("ShopBuyMenu").connect("bought_strength", _on_bought_strength)
@@ -91,6 +116,7 @@ func _on_leave_bodega():
 	create_tween().tween_property($BlackFade, "color:a", 1.0, 0.2)
 	await get_tree().create_timer(0.2).timeout
 	var subway_map = subway_scene.instantiate()
+	subway_map.player_scene = chosen_player_type()
 	subway_map.connect("arrived_at_destination", _on_arrived_at_destination)
 	subway_map.connect("go_to_bodega", _on_go_to_bodega)
 	subway_map.set_current_location(coming_from)
@@ -122,13 +148,23 @@ func _on_bought_speed():
 
 
 func _on_critter_pick_critter_chosen(critter_type):
+	player_type = critter_type
+	match player_type:
+		"Ratler":
+			bought_moves.append(Moves.BIG_CHOMP)
+		"PidgePodge":
+			bought_moves.append(Moves.WINGSLAP)
+		"Coffeeny":
+			bought_moves.append(Moves.FATBERG)
 	create_tween().tween_property($BlackFade, "color:a", 1.0, 0.2)
 	await get_tree().create_timer(0.2).timeout
 	var city_level = city_level_scene.instantiate()
 	city_level.connect("battle_over", _on_battle_to_subway)
 	city_level.get_node("BattleBox").connect("heal_used", _on_heal_used)
+	city_level.get_node("BattleBox").set_player(chosen_player_type())
 	add_child(city_level)
 	battle_scene = city_level
 	$IntroScreen.queue_free()
 	$CritterPick.queue_free()
 	create_tween().tween_property($BlackFade, "color:a", 0.0, 0.2)
+

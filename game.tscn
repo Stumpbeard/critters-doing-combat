@@ -34,6 +34,7 @@ color = Color(0, 0, 0, 0)
 
 [node name="GameOver" type="ColorRect" parent="."]
 visible = false
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -77,10 +78,12 @@ color = Color(0.67451, 0.196078, 0.196078, 0)
 [node name="TopScrollingWarningLabel" parent="." instance=ExtResource("5_eoblc")]
 modulate = Color(1, 1, 1, 0)
 top_level = true
+z_index = 1
 
 [node name="BottomScrollingWarningLabel" parent="." instance=ExtResource("5_eoblc")]
 modulate = Color(1, 1, 1, 0)
 top_level = true
+z_index = 1
 position = Vector2(-1152, 504)
 
 [node name="VictoryBanner" type="Sprite2D" parent="."]

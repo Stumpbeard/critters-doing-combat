@@ -1,6 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkjosqppfqcd4"]
+[gd_scene load_steps=6 format=3 uid="uid://bkjosqppfqcd4"]
 
 [ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_bfgel"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="2_5sdwi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nvlsa"]
+resource_local_to_scene = true
+font = ExtResource("2_5sdwi")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iai8x"]
+resource_local_to_scene = true
+font = ExtResource("2_5sdwi")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7a5xp"]
+resource_local_to_scene = true
+radius = 32.0156
 
 [node name="Ratler" instance=ExtResource("1_bfgel")]
-damage_value = [1, 3]
+damage_value = [1, 10]
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_nvlsa")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_iai8x")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_7a5xp")

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5u8n8r0pqqau" path="res://shop_buy_menu.tscn" id="6_634k0"]
 [ext_resource type="PackedScene" uid="uid://ri1cqbib30wl" path="res://leave_button.tscn" id="8_p5y76"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7wuf6"]
+[sub_resource type="LabelSettings" id="LabelSettings_n5inn"]
 resource_local_to_scene = true
 font = ExtResource("4_s2b23")
 font_size = 64
@@ -32,7 +32,7 @@ offset_right = -212.0
 offset_bottom = -98.0
 text = "What's good,
 boss?"
-label_settings = SubResource("LabelSettings_7wuf6")
+label_settings = SubResource("LabelSettings_n5inn")
 text_size = 64
 text_color = Color(0, 0, 0, 1)
 
@@ -41,6 +41,8 @@ position = Vector2(277, 323)
 
 [node name="LeaveButton" parent="." instance=ExtResource("8_p5y76")]
 position = Vector2(999, 63)
+
+[node name="Kills" type="Node2D" parent="."]
 
 [connection signal="text_done_displaying" from="SpeechBubble/TypingText" to="." method="_on_typing_text_text_done_displaying"]
 [connection signal="bought_hp" from="ShopBuyMenu" to="." method="_on_shop_buy_menu_bought_hp"]

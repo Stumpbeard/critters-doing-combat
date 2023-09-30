@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8dx0snxkuhss"]
+
+[ext_resource type="Texture2D" uid="uid://ckg6rkmp0fvhg" path="res://full-boss-bg.png" id="1_kqyvy"]
+[ext_resource type="Script" path="res://test_bg.gd" id="2_ee4sg"]
+
+[node name="TestBg" type="TextureRect"]
+offset_top = -2592.0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_kqyvy")
+script = ExtResource("2_ee4sg")

@@ -5,7 +5,7 @@ signal attacked
 signal hero_died
 signal enemy_died
 
-enum Critters { RATLER, PIDGE_PODGE, PIZZALING, GULLMEYER, ROACHMEISER, RATOCOPTER, BAGGO, MOUSLE, COFFEENY, FERROTH, DEMOGATOR }
+enum Critters { RATLER, PIDGE_PODGE, PIZZALING, GULLMEYER, ROACHMEISER, RATOCOPTER, BAGGO, MOUSLE, COFFEENY, FERROTH, DEMOGATOR, SECURIBULL, CEO, GOD }
 enum Types { RODENT, TRASH, BIRD, HOLY, DEVIL, NORMAL }
 
 @export var is_villain = false
@@ -35,6 +35,8 @@ func _ready():
 		flip_h = true
 	if is_boss:
 		is_boss_entering = true
+		$HoverActivation.scale *= 2
+		$HoverActivation.position.y -= 32
 	$HealthLabel.text = "%s/%s" % [current_health, max_health]
 	$AttackTimer.start(attack_speed)
 	duplicate_tex_but_yellow()
@@ -65,6 +67,12 @@ func set_hover_info():
 			$HoverInfo/Name.text = "Rat-O-Copter"
 		Critters.BAGGO:
 			$HoverInfo/Name.text = "Baggo"
+		Critters.SECURIBULL:
+			$HoverInfo/Name.text = "Securibull"
+		Critters.CEO:
+			$HoverInfo/Name.text = "The CEO"
+		Critters.GOD:
+			$HoverInfo/Name.text = "YHWH"
 	var first_type = status_types[0]
 	match first_type:
 		Types.RODENT:
@@ -113,7 +121,7 @@ func jump():
 
 func attack():
 	if !is_attacking:
-		return
+		return false
 	var tween = create_tween()
 	if is_villain:
 		tween.tween_property(self, "offset:x", -25, 0.05)
@@ -121,6 +129,7 @@ func attack():
 		tween.tween_property(self, "offset:x", 25, 0.05)
 	tween.tween_property(self, "offset:x", 0, 0.05)
 	emit_signal("attacked", randi_range(damage_value[0], damage_value[1]), is_villain)
+	return true
 
 
 func take_damage(dam, special_used = false):
@@ -279,6 +288,10 @@ func get_resistances():
 				resists["weak"].append(Types.TRASH)
 			Types.TRASH:
 				resists["weak"].append(Types.RODENT)
+			Types.HOLY:
+				resists["weak"].append(Types.DEVIL)
+			Types.DEVIL:
+				resists["weak"].append(Types.HOLY)
 	# Resistance overwrite
 	for type in status_types:
 		match type:
@@ -297,6 +310,19 @@ func get_resistances():
 					resists["weak"].erase(Types.BIRD)
 				else:
 					resists['resistant'].append(Types.BIRD)
+			Types.HOLY:
+				if Types.RODENT in resists["weak"]:
+					resists["weak"].erase(Types.RODENT)
+				else:
+					resists['resistant'].append(Types.RODENT)
+				if Types.BIRD in resists["weak"]:
+					resists["weak"].erase(Types.BIRD)
+				else:
+					resists['resistant'].append(Types.BIRD)
+				if Types.TRASH in resists["weak"]:
+					resists["weak"].erase(Types.TRASH)
+				else:
+					resists['resistant'].append(Types.TRASH)
 	return resists
 
 

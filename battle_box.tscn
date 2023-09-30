@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk4ejvq3ybn2k"]
+[gd_scene load_steps=9 format=3 uid="uid://bk4ejvq3ybn2k"]
 
 [ext_resource type="Texture2D" uid="uid://5knu7omky43k" path="res://battle-bg-middle.png" id="1_5huim"]
 [ext_resource type="PackedScene" uid="uid://dbnft6o58ne2q" path="res://heal_button.tscn" id="2_8ed25"]
 [ext_resource type="Script" path="res://battle_box.gd" id="2_lqiro"]
 [ext_resource type="PackedScene" uid="uid://wsfg4uos2q42" path="res://run_button.tscn" id="4_eki85"]
+[ext_resource type="Texture2D" uid="uid://bbmaaxmesmllj" path="res://no-escape-label.png" id="5_j4so8"]
 [ext_resource type="PackedScene" uid="uid://e8pe3m78hakb" path="res://spawn_system.tscn" id="6_u23bm"]
 [ext_resource type="PackedScene" uid="uid://dw6uwyqennww1" path="res://moves_box.tscn" id="6_y8wri"]
 [ext_resource type="PackedScene" uid="uid://b0q4xrdyxrfof" path="res://special_move_button.tscn" id="7_qslq5"]
@@ -20,6 +21,11 @@ position = Vector2(432, 504)
 
 [node name="RunButton" parent="." instance=ExtResource("4_eki85")]
 position = Vector2(720, 504)
+
+[node name="NoEscapeLabel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(720, 504)
+texture = ExtResource("5_j4so8")
 
 [node name="SpecialMoveButton" parent="." instance=ExtResource("7_qslq5")]
 position = Vector2(576, 475)

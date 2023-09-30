@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://o3h7msdh5nqx"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_qxbgw"]
+[ext_resource type="Texture2D" uid="uid://4ec611hen1tn" path="res://securibull.png" id="2_jri1d"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_dqtv5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r5cw2"]
+resource_local_to_scene = true
+font = ExtResource("3_dqtv5")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nk8og"]
+resource_local_to_scene = true
+font = ExtResource("3_dqtv5")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qb87f"]
+resource_local_to_scene = true
+radius = 32.0156
+
+[node name="Securibull" instance=ExtResource("1_qxbgw")]
+texture = ExtResource("2_jri1d")
+offset = Vector2(2.08165e-12, -36)
+max_health = 25
+current_health = 25
+damage_value = [6, 10]
+critter_type = 11
+status_types = Array[int]([4])
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_r5cw2")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_nk8og")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_qb87f")

@@ -1,6 +1,7 @@
 extends Node2D
 
 signal battle_over
+signal killed_god
 
 
 func _ready():

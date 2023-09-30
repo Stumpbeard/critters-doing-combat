@@ -123,7 +123,7 @@ func _on_text_mouse_input(event, text):
 						else:
 							not_enough(text)
 					"Hellfire":
-						if "Demogator" in kills && kills["Demogator"] >= 1:
+						if "Demogator" in kills && kills["Demogator"] >= 10:
 							bought_moves.append(GameShell.Moves.HELLFIRE)
 							switch_to_sold_out(text)
 						else:

@@ -8,6 +8,9 @@ signal killed_boss
 @export var player_scene: PackedScene = preload("res://ratler.tscn")
 @export var enemy_scene: PackedScene = preload("res://pidge_podge.tscn")
 @export var boss_scene: PackedScene = preload("res://roachmeiser.tscn")
+@export var final_area = false
+var ferroth_scene = preload("res://ferroth.tscn")
+var demogator_scene = preload("res://demogator.tscn")
 
 var fading_text_scene = preload("res://fading_text.tscn")
 var level_up_scene = preload("res://level_up_pop_up.tscn")
@@ -21,13 +24,14 @@ var special_attack_readied = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var enemy = enemy_scene.instantiate()
-	enemy.position = Vector2(684, 324)
-	enemy.is_villain = true
-	enemy.add_to_group("enemies")
-	add_child(enemy)
-	enemy.connect("attacked", _on_attacked)
-	enemy.connect("enemy_died", _on_enemy_died)
+	if !final_area:
+		var enemy = enemy_scene.instantiate()
+		enemy.position = Vector2(684, 324)
+		enemy.is_villain = true
+		enemy.add_to_group("enemies")
+		add_child(enemy)
+		enemy.connect("attacked", _on_attacked)
+		enemy.connect("enemy_died", _on_enemy_died)
 	if !player:
 		player = player_scene.instantiate()
 		player.position = Vector2(468, 324)
@@ -70,6 +74,12 @@ func _on_enemy_died(critter_type, was_boss=false):
 			enemy_name = "Ferroth"
 		10:
 			enemy_name = "Demogator"
+		11:
+			enemy_name = "Securibull"
+		12:
+			enemy_name = "The CEO"
+		13:
+			enemy_name = "YHWH"
 	if enemy_name in enemies_killed:
 		enemies_killed[enemy_name] += 1
 	else:
@@ -151,7 +161,14 @@ func _on_spawn_system_spawn_enemy():
 func spawn_enemy():
 	if running_away:
 		return
-	var enemy = enemy_scene.instantiate()
+	var enemy = null
+	match randi() % 20:
+		0:
+			enemy = ferroth_scene.instantiate()
+		1:
+			enemy = demogator_scene.instantiate()
+		_:
+			enemy = enemy_scene.instantiate()
 	enemy.position = Vector2(684, 324)
 	enemy.position.x += randi() % 72
 	enemy.position.y += randi_range(-144, 72)
@@ -178,7 +195,8 @@ func spawn_boss():
 
 
 func _on_hero_died():
-	$SpawnSystem.stop()
+	if $SpawnSystem:
+		$SpawnSystem.stop()
 	emit_signal("battle_over")
 
 
@@ -255,3 +273,7 @@ func level_up():
 func _on_special_move_button_moves_pressed():
 	special_attack_readied = true
 	player.special_attack_glow()
+
+func disable_escape():
+	$RunButton.queue_free()
+	$NoEscapeLabel.visible = true

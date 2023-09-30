@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://bxydwwcxbr55w"]
+
+[ext_resource type="PackedScene" uid="uid://blbqohwbtfii1" path="res://game.tscn" id="1_d6p3h"]
+[ext_resource type="Script" path="res://wall_st.gd" id="2_fbcob"]
+[ext_resource type="Texture2D" uid="uid://ddff6ygoing71" path="res://lobby-bg.png" id="2_ihosi"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="4_iu302"]
+[ext_resource type="PackedScene" uid="uid://o3h7msdh5nqx" path="res://securibull.tscn" id="4_vdgdg"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="5_wqxei"]
+[ext_resource type="Texture2D" uid="uid://cuvcd7bxrjiqj" path="res://elevator-left.png" id="6_3afr7"]
+[ext_resource type="Texture2D" uid="uid://w5ur28bfe786" path="res://elevator-right.png" id="7_su8mw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ouaq"]
+resource_local_to_scene = true
+font = ExtResource("5_wqxei")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_2d70y"]
+resource_local_to_scene = true
+font = ExtResource("5_wqxei")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_y5rd5"]
+resource_local_to_scene = true
+font = ExtResource("5_wqxei")
+font_size = 48
+
+[node name="WallSt" instance=ExtResource("1_d6p3h")]
+script = ExtResource("2_fbcob")
+
+[node name="TextureRect" parent="." index="0"]
+texture = ExtResource("2_ihosi")
+
+[node name="BattleBox" parent="." index="1"]
+boss_scene = ExtResource("4_vdgdg")
+final_area = true
+
+[node name="Fade" parent="BattleBox" index="6"]
+z_index = 6
+
+[node name="GuardText" parent="." index="7" instance=ExtResource("4_iu302")]
+visible = false
+offset_left = 537.0
+offset_top = 222.0
+offset_right = 771.0
+offset_bottom = 324.0
+text = "You're not
+supposed to
+be here."
+label_settings = SubResource("LabelSettings_7ouaq")
+text_size = 48
+
+[node name="CEOText" parent="." index="8" instance=ExtResource("4_iu302")]
+visible = false
+offset_left = 537.0
+offset_top = 222.0
+offset_right = 750.0
+offset_bottom = 375.0
+text = "I suppose
+you want
+a meeting..."
+label_settings = SubResource("LabelSettings_2d70y")
+text_size = 48
+
+[node name="GodText" parent="." index="9" instance=ExtResource("4_iu302")]
+visible = false
+offset_left = 537.0
+offset_top = 222.0
+offset_right = 750.0
+offset_bottom = 375.0
+text = "Oh little
+one..."
+label_settings = SubResource("LabelSettings_y5rd5")
+text_size = 48
+
+[node name="Elevator" type="Node2D" parent="." index="10"]
+z_index = 2
+
+[node name="ElevatorDoorLeft" type="Sprite2D" parent="Elevator" index="0"]
+position = Vector2(-576, 2.08165e-12)
+texture = ExtResource("6_3afr7")
+centered = false
+
+[node name="ElevatorDoorRight" type="Sprite2D" parent="Elevator" index="1"]
+position = Vector2(1152, 2.08165e-12)
+texture = ExtResource("7_su8mw")
+centered = false

@@ -22,12 +22,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if !Engine.is_editor_hint():
-		if ticks % 2 == 0 && reveal:
+		if ticks % 2 == 0 && reveal && visible:
 			visible_characters += 1
 			if visible_ratio >= 1.0:
 				emit_signal("text_done_displaying")
-				reveal = false
 		ticks += 1
 	if Engine.is_editor_hint():
 		label_settings.font_size = text_size
 		label_settings.font_color = text_color
+		
+		
+func reset():
+	visible_characters = 0
+	ticks = 0

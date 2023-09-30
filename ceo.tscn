@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl7rdfoyu80mt"]
+
+[ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_5242c"]
+[ext_resource type="Texture2D" uid="uid://igfwy2c0beck" path="res://rodent-ceo.png" id="2_67x3i"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_370lo"]
+[ext_resource type="Script" path="res://ceo.gd" id="3_cuiyj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nope7"]
+resource_local_to_scene = true
+font = ExtResource("3_370lo")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mo42"]
+resource_local_to_scene = true
+font = ExtResource("3_370lo")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5kue"]
+resource_local_to_scene = true
+radius = 32.0156
+
+[node name="CEO" instance=ExtResource("1_5242c")]
+texture = ExtResource("2_67x3i")
+offset = Vector2(2.08165e-12, -32)
+script = ExtResource("3_cuiyj")
+max_health = 50
+current_health = 50
+damage_value = [1, 1]
+critter_type = 12
+status_types = Array[int]([4, 0])
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_nope7")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_7mo42")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_x5kue")

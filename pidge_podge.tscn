@@ -23,7 +23,9 @@ radius = 32.0156
 
 [node name="PidgePodge" instance=ExtResource("1_ynpqt")]
 texture = ExtResource("2_l8ev2")
-damage_value = [1, 100]
+max_health = 15
+current_health = 15
+damage_value = [4, 6]
 critter_type = 1
 status_types = Array[int]([2])
 

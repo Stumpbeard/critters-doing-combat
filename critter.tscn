@@ -9,14 +9,14 @@
 font = ExtResource("3_2jgu1")
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_oxdil"]
+[sub_resource type="LabelSettings" id="LabelSettings_jtfij"]
 resource_local_to_scene = true
 font = ExtResource("3_2jgu1")
 font_size = 32
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_xj0n2"]
+[sub_resource type="LabelSettings" id="LabelSettings_tlwua"]
 resource_local_to_scene = true
 font = ExtResource("3_2jgu1")
 outline_size = 8
@@ -60,14 +60,14 @@ mouse_filter = 2
 [node name="Name" parent="HoverInfo" instance=ExtResource("4_e5doo")]
 layout_mode = 2
 text = "Ratler"
-label_settings = SubResource("LabelSettings_oxdil")
+label_settings = SubResource("LabelSettings_jtfij")
 text_size = 32
 reveal = false
 
 [node name="Type" parent="HoverInfo" instance=ExtResource("4_e5doo")]
 layout_mode = 2
 text = "Rodent"
-label_settings = SubResource("LabelSettings_xj0n2")
+label_settings = SubResource("LabelSettings_tlwua")
 reveal = false
 
 [node name="HoverActivation" type="Area2D" parent="."]

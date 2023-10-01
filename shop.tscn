@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5u8n8r0pqqau" path="res://shop_buy_menu.tscn" id="6_634k0"]
 [ext_resource type="PackedScene" uid="uid://ri1cqbib30wl" path="res://leave_button.tscn" id="8_p5y76"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_n5inn"]
+[sub_resource type="LabelSettings" id="LabelSettings_hexqi"]
 resource_local_to_scene = true
 font = ExtResource("4_s2b23")
 font_size = 64
@@ -32,7 +32,7 @@ offset_right = -212.0
 offset_bottom = -98.0
 text = "What's good,
 boss?"
-label_settings = SubResource("LabelSettings_n5inn")
+label_settings = SubResource("LabelSettings_hexqi")
 text_size = 64
 text_color = Color(0, 0, 0, 1)
 

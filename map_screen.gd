@@ -3,10 +3,10 @@ extends Control
 signal arrived_at_destination
 signal go_to_bodega
 
-enum Places { CITY, PIZZERIA, BRIDGE }
+enum Places { CITY, PIZZERIA, BRIDGE, WALL_ST }
 
 @export var player_at: Places = Places.CITY
-@export var heat_ratios = {"city": 0.0, "bridge": 0.0, "pizzeria": 0.0}
+@export var heat_ratios = {"city": 0.0, "bridge": 0.0, "pizzeria": 0.0, "wall_st": 0.0}
 
 var player_scene = preload("res://ratler.tscn")
 
@@ -41,6 +41,8 @@ func set_current_location(from):
 			player_at = Places.PIZZERIA
 		"bridge":
 			player_at = Places.BRIDGE
+		"wall_st":
+			player_at = Places.WALL_ST
 
 
 func end_trip(dest = ""):
@@ -128,3 +130,42 @@ func _on_bridge_map_selector_map_button_clicked():
 
 func _on_bodega_run_button_bodega_button_pressed():
 	emit_signal("go_to_bodega")
+
+
+func _on_wall_st_map_selector_map_button_clicked():
+	if player_traveling:
+		return
+	match player_at:
+		Places.CITY:
+			$CityToPizzaPath/PlayerFollower.visible = false
+			$BridgeToCityPath/PlayerFollower.visible = false
+			$BridgeToPizzaPath/PlayerFollower.visible = false
+			$CityToWallStPath/PlayerFollower.visible = true
+			$CityToWallStPath/PlayerFollower.progress_ratio = 0.0
+			player_traveling = true
+			var tween = create_tween()
+			tween.tween_method($CityToWallStPath/PlayerFollower.set_progress_ratio, 0.0, 1.0, 1.0)
+			tween.tween_callback(end_trip.bind("wall_st"))
+			player_at = Places.WALL_ST
+		Places.PIZZERIA:
+			$CityToPizzaPath/PlayerFollower.visible = false
+			$BridgeToCityPath/PlayerFollower.visible = false
+			$BridgeToPizzaPath/PlayerFollower.visible = false
+			$PizzaToWallStPath/PlayerFollower.visible = true
+			$PizzaToWallStPath/PlayerFollower.progress_ratio = 0.0
+			player_traveling = true
+			var tween = create_tween()
+			tween.tween_method($PizzaToWallStPath/PlayerFollower.set_progress_ratio, 0.0, 1.0, 1.0)
+			tween.tween_callback(end_trip.bind("wall_st"))
+			player_at = Places.WALL_ST
+		Places.BRIDGE:
+			$CityToPizzaPath/PlayerFollower.visible = false
+			$BridgeToCityPath/PlayerFollower.visible = false
+			$BridgeToPizzaPath/PlayerFollower.visible = false
+			$BridgeToWallStPath/PlayerFollower.visible = true
+			$BridgeToWallStPath/PlayerFollower.progress_ratio = 0.0
+			player_traveling = true
+			var tween = create_tween()
+			tween.tween_method($BridgeToWallStPath/PlayerFollower.set_progress_ratio, 0.0, 1.0, 1.0)
+			tween.tween_callback(end_trip.bind("wall_st"))
+			player_at = Places.WALL_ST

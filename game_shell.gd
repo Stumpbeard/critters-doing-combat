@@ -8,6 +8,7 @@ enum Moves {BIG_CHOMP, WINGSLAP, FATBERG, SALVATION, HELLFIRE}
 var city_level_scene: PackedScene = preload("res://city_area.tscn")
 var pizza_level_scene: PackedScene = preload("res://pizza_area.tscn")
 var bridge_level_scene: PackedScene = preload("res://bridge_area.tscn")
+var wall_st_level_scene: PackedScene = preload("res://wall_st.tscn")
 var subway_scene: PackedScene = preload("res://map_screen.tscn")
 var bodega_scene: PackedScene = preload("res://shop.tscn")
 
@@ -22,8 +23,8 @@ var map_scene = null
 var shop_scene = null
 
 var kills = {}
-var heat_ratios = {"city": 0.0, "bridge": 0.0, "pizzeria": 0.0}
-var heals = 1
+var heat_ratios = {"city": 0.0, "bridge": 0.0, "pizzeria": 0.0, "wall_st": 0.0}
+var heals = 5
 
 var coming_from = ''
 
@@ -83,6 +84,8 @@ func _on_arrived_at_destination(dest):
 			level = city_level_scene.instantiate()
 		"bridge":
 			level = bridge_level_scene.instantiate()
+		"wall_st":
+			level = wall_st_level_scene.instantiate()
 	level.connect("battle_over", _on_battle_to_subway)
 	level.get_node("BattleBox").connect("heal_used", _on_heal_used)
 	level.get_node("BattleBox").set_player(chosen_player_type())

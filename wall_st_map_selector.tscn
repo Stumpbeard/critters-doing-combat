@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dngv7b8tjtltm"]
+
+[ext_resource type="PackedScene" uid="uid://23p6n27nn3fq" path="res://map_selector.tscn" id="1_wax65"]
+[ext_resource type="Texture2D" uid="uid://cmk7ieuu3h8o2" path="res://wall-st-balloon.png" id="2_hirsj"]
+
+[node name="WallStMapSelector" instance=ExtResource("1_wax65")]
+
+[node name="Bubble" parent="." index="1"]
+position = Vector2(113, -100)
+texture = ExtResource("2_hirsj")

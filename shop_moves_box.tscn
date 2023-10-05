@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bj2g7n5q6e3nx"]
+[gd_scene load_steps=25 format=3 uid="uid://bj2g7n5q6e3nx"]
 
 [ext_resource type="Texture2D" uid="uid://dg3efjyv41lce" path="res://move-buy-box.png" id="1_8aup2"]
 [ext_resource type="Script" path="res://shop_moves_box.gd" id="2_6lthq"]
@@ -10,42 +10,90 @@
 [ext_resource type="Texture2D" uid="uid://jhye6kp2qxsc" path="res://ferroth.png" id="7_hehls"]
 [ext_resource type="Texture2D" uid="uid://b57buxmo7abfk" path="res://demogator.png" id="8_8r8nh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_i6qq8"]
+[sub_resource type="LabelSettings" id="LabelSettings_huv6w"]
 resource_local_to_scene = true
 font = ExtResource("3_he58i")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_ewcsy"]
+[sub_resource type="LabelSettings" id="LabelSettings_thh3o"]
 resource_local_to_scene = true
 font = ExtResource("3_he58i")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_x6ouq"]
+[sub_resource type="LabelSettings" id="LabelSettings_8yndh"]
 resource_local_to_scene = true
 font = ExtResource("3_he58i")
 font_size = 32
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_uvlpg"]
+[sub_resource type="LabelSettings" id="LabelSettings_x3g86"]
 resource_local_to_scene = true
 font = ExtResource("3_he58i")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_otwlc"]
+[sub_resource type="LabelSettings" id="LabelSettings_32obt"]
 resource_local_to_scene = true
 font = ExtResource("3_he58i")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_qqqwv"]
+[sub_resource type="LabelSettings" id="LabelSettings_c6flb"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_71mqg"]
 resource_local_to_scene = true
 font = ExtResource("3_he58i")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_hjulc"]
+[sub_resource type="LabelSettings" id="LabelSettings_ewxf6"]
 resource_local_to_scene = true
 font = ExtResource("3_he58i")
 font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_g53mi"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rga6x"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_owxdx"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_n24dd"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_icono"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_mw3qb"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgtqv"]
+resource_local_to_scene = true
+font = ExtResource("3_he58i")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="ShopMovesBox" type="Sprite2D"]
 position = Vector2(418, 314)
@@ -58,7 +106,7 @@ offset_top = -118.0
 offset_right = 43.0
 offset_bottom = -67.0
 text = "Big chomp"
-label_settings = SubResource("LabelSettings_i6qq8")
+label_settings = SubResource("LabelSettings_huv6w")
 text_size = 48
 reveal = false
 
@@ -68,7 +116,7 @@ offset_left = 217.0
 offset_right = 256.0
 offset_bottom = 51.0
 text = "1x"
-label_settings = SubResource("LabelSettings_ewcsy")
+label_settings = SubResource("LabelSettings_thh3o")
 text_size = 48
 reveal = false
 
@@ -87,7 +135,7 @@ offset_right = 315.0
 offset_bottom = 52.0
 rotation = -0.174533
 text = "Sold out!"
-label_settings = SubResource("LabelSettings_x6ouq")
+label_settings = SubResource("LabelSettings_8yndh")
 text_size = 32
 reveal = false
 
@@ -97,7 +145,7 @@ offset_top = -71.0
 offset_right = 35.0
 offset_bottom = -20.0
 text = "Wingslap"
-label_settings = SubResource("LabelSettings_i6qq8")
+label_settings = SubResource("LabelSettings_x3g86")
 text_size = 48
 reveal = false
 
@@ -107,7 +155,7 @@ offset_left = 224.0
 offset_right = 263.0
 offset_bottom = 51.0
 text = "1x"
-label_settings = SubResource("LabelSettings_uvlpg")
+label_settings = SubResource("LabelSettings_32obt")
 text_size = 48
 reveal = false
 
@@ -119,13 +167,14 @@ flip_h = true
 
 [node name="SoldOut" parent="Wingslap" instance=ExtResource("2_sonh6")]
 visible = false
+layout_mode = 0
 offset_left = 203.0
 offset_top = 17.0
 offset_right = 315.0
 offset_bottom = 52.0
 rotation = -0.174533
 text = "Sold out!"
-label_settings = SubResource("LabelSettings_x6ouq")
+label_settings = SubResource("LabelSettings_c6flb")
 text_size = 32
 reveal = false
 
@@ -135,7 +184,7 @@ offset_top = -22.0
 offset_right = 25.0
 offset_bottom = 29.0
 text = "Fatberg"
-label_settings = SubResource("LabelSettings_i6qq8")
+label_settings = SubResource("LabelSettings_71mqg")
 text_size = 48
 reveal = false
 
@@ -146,7 +195,7 @@ offset_top = 1.0
 offset_right = 274.0
 offset_bottom = 52.0
 text = "1x"
-label_settings = SubResource("LabelSettings_otwlc")
+label_settings = SubResource("LabelSettings_ewxf6")
 text_size = 48
 reveal = false
 
@@ -158,13 +207,14 @@ flip_h = true
 
 [node name="SoldOut" parent="Fatberg" instance=ExtResource("2_sonh6")]
 visible = false
+layout_mode = 0
 offset_left = 203.0
 offset_top = 17.0
 offset_right = 315.0
 offset_bottom = 52.0
 rotation = -0.174533
 text = "Sold out!"
-label_settings = SubResource("LabelSettings_x6ouq")
+label_settings = SubResource("LabelSettings_g53mi")
 text_size = 32
 reveal = false
 
@@ -174,7 +224,7 @@ offset_top = 22.0
 offset_right = 39.0
 offset_bottom = 73.0
 text = "Salvation"
-label_settings = SubResource("LabelSettings_i6qq8")
+label_settings = SubResource("LabelSettings_rga6x")
 text_size = 48
 reveal = false
 
@@ -185,7 +235,7 @@ offset_top = -1.0
 offset_right = 262.0
 offset_bottom = 50.0
 text = "10x"
-label_settings = SubResource("LabelSettings_qqqwv")
+label_settings = SubResource("LabelSettings_owxdx")
 text_size = 48
 reveal = false
 
@@ -197,13 +247,14 @@ flip_h = true
 
 [node name="SoldOut" parent="Salvation" instance=ExtResource("2_sonh6")]
 visible = false
+layout_mode = 0
 offset_left = 203.0
 offset_top = 17.0
 offset_right = 315.0
 offset_bottom = 52.0
 rotation = -0.174533
 text = "Sold out!"
-label_settings = SubResource("LabelSettings_x6ouq")
+label_settings = SubResource("LabelSettings_n24dd")
 text_size = 32
 reveal = false
 
@@ -213,7 +264,7 @@ offset_top = 66.0
 offset_right = 21.0
 offset_bottom = 117.0
 text = "Hellfire"
-label_settings = SubResource("LabelSettings_i6qq8")
+label_settings = SubResource("LabelSettings_icono")
 text_size = 48
 reveal = false
 
@@ -223,7 +274,7 @@ offset_left = 220.0
 offset_right = 280.0
 offset_bottom = 51.0
 text = "10x"
-label_settings = SubResource("LabelSettings_hjulc")
+label_settings = SubResource("LabelSettings_mw3qb")
 text_size = 48
 reveal = false
 
@@ -235,12 +286,13 @@ flip_h = true
 
 [node name="SoldOut" parent="Hellfire" instance=ExtResource("2_sonh6")]
 visible = false
+layout_mode = 0
 offset_left = 203.0
 offset_top = 17.0
 offset_right = 315.0
 offset_bottom = 52.0
 rotation = -0.174533
 text = "Sold out!"
-label_settings = SubResource("LabelSettings_x6ouq")
+label_settings = SubResource("LabelSettings_xgtqv")
 text_size = 32
 reveal = false

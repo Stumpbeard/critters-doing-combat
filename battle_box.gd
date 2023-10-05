@@ -87,6 +87,7 @@ func _on_enemy_died(critter_type, was_boss=false):
 	level_info["kill_dollars"] += 1
 	if was_boss:
 		level_info["kill_dollars"] += 4
+		Global.play_cheer()
 		emit_signal("killed_boss")
 
 
@@ -151,9 +152,11 @@ func _on_heal_button_heal_pressed():
 	if !player.is_dying:
 		player.heal_up()
 		emit_signal("heal_used")
+		Global.play_heal()
 
 
 func _on_spawn_system_spawn_enemy():
+	Global.play_hit_spawn()
 	if !player.is_dying:
 		spawn_enemy()
 
@@ -212,6 +215,7 @@ func _on_run_button_finished_charging():
 	for enemy in get_live_enemies():
 		enemy.is_attacking = false
 	player.is_attacking = false
+	Global.play_wind()
 	emit_signal("run_away", $SpawnSystem.get_heat_ratio())
 
 
@@ -271,6 +275,7 @@ func level_up():
 
 
 func _on_special_move_button_moves_pressed():
+	Global.play_powerup()
 	special_attack_readied = true
 	player.special_attack_glow()
 

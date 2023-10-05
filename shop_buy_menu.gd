@@ -84,6 +84,7 @@ func _on_heals_select_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if !event.pressed && event.button_index == 1:
 			if level_up_info["kill_dollars"] > 0:
+				Global.play_chaching()
 				heals += 1
 				var exploding_number = exploding_number_scene.instantiate()
 				exploding_number.number = 1
@@ -92,6 +93,8 @@ func _on_heals_select_input_event(_viewport, event, _shape_idx):
 				$HealsHave.text = "x%s" % [heals]
 				emit_signal("bought_heal")
 				$KillsToSpend.text = "Kills: %s" % [level_up_info["kill_dollars"]]
+			else:
+				Global.play_error()
 
 
 func _on_health_select_input_event(viewport, event, shape_idx):
@@ -153,6 +156,7 @@ func _on_moves_select_mouse_entered():
 func _on_moves_select_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if !event.pressed && event.button_index == 1:
+			Global.play_click()
 			if !$ShopMovesBox.visible:
 				$ShopMovesBox.visible = true
 				create_tween().tween_property($ShopMovesBox, "scale", Vector2(1, 1), 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)

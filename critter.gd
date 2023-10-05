@@ -67,6 +67,10 @@ func set_hover_info():
 			$HoverInfo/Name.text = "Rat-O-Copter"
 		Critters.BAGGO:
 			$HoverInfo/Name.text = "Baggo"
+		Critters.FERROTH:
+			$HoverInfo/Name.text = "Ferroth"
+		Critters.DEMOGATOR:
+			$HoverInfo/Name.text = "Demogator"
 		Critters.SECURIBULL:
 			$HoverInfo/Name.text = "Securibull"
 		Critters.CEO:
@@ -129,6 +133,7 @@ func attack():
 		tween.tween_property(self, "offset:x", 25, 0.05)
 	tween.tween_property(self, "offset:x", 0, 0.05)
 	emit_signal("attacked", randi_range(damage_value[0], damage_value[1]), is_villain)
+	Global.play_critter_attack(critter_type)
 	return true
 
 
@@ -181,6 +186,7 @@ func _physics_process(delta):
 
 
 func die(skip_credit=false):
+	Global.play_pow()
 	velocity.x = randf() * 288.0 - 144.0
 	velocity.y = gravity * -(randf() * 0.75 + 1.0)
 	is_dying = true
@@ -327,14 +333,20 @@ func get_resistances():
 
 
 func _on_hover_activation_mouse_entered():
+	if in_shop_mode:
+		return
 	$HoverInfo.visible = true
 	$HoverInfo.global_position = get_viewport().get_mouse_position()
 
 
 func _on_hover_activation_mouse_exited():
+	if in_shop_mode:
+		return
 	$HoverInfo.visible = false
 
 
 func _on_hover_activation_input_event(viewport, event, shape_idx):
+	if in_shop_mode:
+		return
 	if event is InputEventMouseMotion:
 		$HoverInfo.global_position = get_viewport().get_mouse_position()

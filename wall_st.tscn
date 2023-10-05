@@ -9,17 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://cuvcd7bxrjiqj" path="res://elevator-left.png" id="6_3afr7"]
 [ext_resource type="Texture2D" uid="uid://w5ur28bfe786" path="res://elevator-right.png" id="7_su8mw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ihhgd"]
+[sub_resource type="LabelSettings" id="LabelSettings_7n7as"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_vcy42"]
+[sub_resource type="LabelSettings" id="LabelSettings_aiyu1"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_g7obr"]
+[sub_resource type="LabelSettings" id="LabelSettings_kumel"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
@@ -46,7 +46,7 @@ offset_bottom = 324.0
 text = "You're not
 supposed to
 be here."
-label_settings = SubResource("LabelSettings_ihhgd")
+label_settings = SubResource("LabelSettings_7n7as")
 text_size = 48
 
 [node name="CEOText" parent="." index="8" instance=ExtResource("4_iu302")]
@@ -58,7 +58,7 @@ offset_bottom = 375.0
 text = "I suppose
 you want
 a meeting..."
-label_settings = SubResource("LabelSettings_vcy42")
+label_settings = SubResource("LabelSettings_aiyu1")
 text_size = 48
 
 [node name="GodText" parent="." index="9" instance=ExtResource("4_iu302")]
@@ -69,7 +69,7 @@ offset_right = 750.0
 offset_bottom = 375.0
 text = "Oh little
 one..."
-label_settings = SubResource("LabelSettings_g7obr")
+label_settings = SubResource("LabelSettings_kumel")
 text_size = 48
 
 [node name="Elevator" type="Node2D" parent="." index="10"]

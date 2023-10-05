@@ -74,6 +74,7 @@ func _on_pizzeria_map_selector_map_button_clicked():
 			tween.tween_method($BridgeToPizzaPath/PlayerFollower.set_progress_ratio, 0.0, 1.0, 1.0)
 			tween.tween_callback(end_trip.bind("pizzeria"))
 			player_at = Places.PIZZERIA
+	Global.play_wind()
 
 
 func _on_city_map_selector_map_button_clicked():
@@ -100,6 +101,7 @@ func _on_city_map_selector_map_button_clicked():
 			tween.tween_method($CityToPizzaPath/PlayerFollower.set_progress_ratio, 1.0, 0.0, 1.0)
 			tween.tween_callback(end_trip.bind("city"))
 			player_at = Places.CITY
+	Global.play_wind()
 
 
 func _on_bridge_map_selector_map_button_clicked():
@@ -126,9 +128,11 @@ func _on_bridge_map_selector_map_button_clicked():
 			tween.tween_method($BridgeToPizzaPath/PlayerFollower.set_progress_ratio, 1.0, 0.0, 1.0)
 			tween.tween_callback(end_trip.bind("bridge"))
 			player_at = Places.BRIDGE
+	Global.play_wind()
 
 
 func _on_bodega_run_button_bodega_button_pressed():
+	Global.play_click()
 	emit_signal("go_to_bodega")
 
 
@@ -169,3 +173,4 @@ func _on_wall_st_map_selector_map_button_clicked():
 			tween.tween_method($BridgeToWallStPath/PlayerFollower.set_progress_ratio, 0.0, 1.0, 1.0)
 			tween.tween_callback(end_trip.bind("wall_st"))
 			player_at = Places.WALL_ST
+	Global.play_wind()

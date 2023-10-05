@@ -2,6 +2,8 @@ extends Control
 
 signal start_game
 
+var started = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +32,10 @@ func jump():
 
 
 func _input(event):
+	if started:
+		return
 	if event is InputEventMouseButton:
 		if !event.pressed:
 			emit_signal("start_game")
+			started = true
+			Global.play_enter()

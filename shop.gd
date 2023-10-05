@@ -27,7 +27,7 @@ func _ready():
 	show_kill_counters()
 	
 func get_kills_from_game_shell():
-	var shell = get_tree().root.get_child(0)
+	var shell = get_node_or_null('/root/GameShell')
 	if not shell is GameShell:
 		return
 	kills = shell.kills
@@ -104,6 +104,7 @@ func set_player_info(new_level_info, heals):
 	$ShopBuyMenu.set_player_info(new_level_info, heals)
 
 func level_up_critter():
+	Global.play_chaching()
 	player.level_up()
 	var level_up_pop = level_up_scene.instantiate()
 	level_up_pop.position = player.position

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://do3p64pdi4sci"
+path="res://.godot/imported/Jet Fueled Vixen.mp3-de71e9216065fde03883d2e2cbf6da1a.mp3str"
+
+[deps]
+
+source_file="res://sounds/Jet Fueled Vixen.mp3"
+dest_files=["res://.godot/imported/Jet Fueled Vixen.mp3-de71e9216065fde03883d2e2cbf6da1a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

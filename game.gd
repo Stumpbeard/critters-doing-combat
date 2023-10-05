@@ -3,12 +3,25 @@ extends Node2D
 signal battle_over
 signal killed_god
 
+@export var song = preload("res://sounds/Salty Ditty.mp3")
+
 
 func _ready():
 	$BattleBox/SpawnSystem.connect("trigger_boss_mode", _on_trigger_boss_mode)
+	var music = AudioStreamPlayer.new()
+	music.stream = song
+	music.name = "Music"
+	music.bus = "Music"
+	add_child(music)
+	play_music()
+	
+
+func play_music():
+	get_node("Music").play()
 	
 	
 func _on_trigger_boss_mode():
+	Global.play_danger()
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	for enemy in enemies:
 		enemy.die(true)

@@ -15,6 +15,10 @@ run/main_scene="res://game_shell.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://ratler-big.png"
 
+[autoload]
+
+Global="*res://global.tscn"
+
 [display]
 
 window/size/window_width_override=2304

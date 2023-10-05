@@ -33,7 +33,6 @@ var level_up_info = {"level": 1, "to_next_level": 1, "hp": 0, "strength": 0, "sp
 func _on_intro_screen_start_game():
 	var tween = create_tween()
 	tween.tween_property($IntroScreen, "position:y", -648, 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-
 	
 func _on_heal_used():
 	heals = max(0, heals - 1)

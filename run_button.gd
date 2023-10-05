@@ -56,6 +56,7 @@ func action():
 	if popping || vibrating:
 		return
 	emit_signal("run_pressed")
+	Global.play_click()
 	button_ready = false
 	trigger_fill()
 	vibrating = true

@@ -40,6 +40,7 @@ func _physics_process(delta):
 		top_critter_tween.tween_interval(1.0)
 			
 func spin_one():
+	Global.play_swish()
 	spinning = true
 	var tween = create_tween()
 	tween.tween_property($Wheel, "rotation_degrees", $Wheel.rotation_degrees + 120, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -52,6 +53,7 @@ func spin_one():
 	tween.tween_callback(set_spinning.bind(false))
 	
 func spin_two():
+	Global.play_swish()
 	spinning = true
 	var tween = create_tween()
 	tween.tween_property($Wheel, "rotation_degrees", $Wheel.rotation_degrees + 240, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -108,3 +110,4 @@ func _on_choose_critter_button_choose_critter_button_pressed():
 		return
 	var critter = $ChosenText.text.split("\n")[0]
 	emit_signal("critter_chosen", critter)
+	Global.play_oh_yeah()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbkibmo11scwy"]
+[gd_scene load_steps=16 format=3 uid="uid://cbkibmo11scwy"]
 
 [ext_resource type="Script" path="res://map_screen.gd" id="1_rqhi0"]
 [ext_resource type="Texture2D" uid="uid://chysl4xqvx7s5" path="res://subway-map.png" id="1_sappg"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dngv7b8tjtltm" path="res://wall_st_map_selector.tscn" id="6_perky"]
 [ext_resource type="Texture2D" uid="uid://c35vdosodfbcw" path="res://ratler.png" id="6_stwxy"]
 [ext_resource type="PackedScene" uid="uid://bvik8rb4phvon" path="res://bodega_run_button.tscn" id="7_vin1q"]
+[ext_resource type="AudioStream" uid="uid://dgrq40yratrlp" path="res://sounds/Doobly Doo.mp3" id="9_bukti"]
 
 [sub_resource type="Curve2D" id="Curve2D_0tfol"]
 _data = {
@@ -147,6 +148,11 @@ rotates = false
 [node name="Sprite2D" type="Sprite2D" parent="PizzaToWallStPath/PlayerFollower"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_stwxy")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_bukti")
+autoplay = true
+bus = &"Music"
 
 [connection signal="map_button_clicked" from="PizzeriaMapSelector" to="." method="_on_pizzeria_map_selector_map_button_clicked"]
 [connection signal="map_button_clicked" from="CityMapSelector" to="." method="_on_city_map_selector_map_button_clicked"]

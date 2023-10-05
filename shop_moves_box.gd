@@ -35,13 +35,13 @@ func _ready():
 
 
 func get_moves_from_game_shell():
-	var shell = get_tree().root.get_child(0)
+	var shell = get_node_or_null('/root/GameShell')
 	if not shell is GameShell:
 		return
 	bought_moves = shell.bought_moves
 	
 func get_kills_from_game_shell():
-	var shell = get_tree().root.get_child(0)
+	var shell = get_node_or_null('/root/GameShell')
 	if not shell is GameShell:
 		return
 	kills = shell.kills
@@ -56,6 +56,7 @@ func _on_text_mouse_exited(text):
 	text.z_index = 0
 	
 func switch_to_sold_out(text):
+	Global.play_chaching()
 	text.get_node("Cost").visible = false
 	text.get_node("SoldOut").visible = true
 	var fading_text = fading_text_scene.instantiate()
@@ -70,6 +71,7 @@ func switch_to_sold_out(text):
 	text.add_child(fading_text)
 	
 func not_enough(text):
+	Global.play_error()
 	var fading_text = fading_text_scene.instantiate()
 	var roll = randi() % 3
 	match roll:

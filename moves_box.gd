@@ -44,7 +44,7 @@ func _ready():
 		
 		
 func get_moves_from_game_shell():
-	var shell = get_tree().root.get_child(0)
+	var shell = get_node_or_null('/root/GameShell')
 	if not shell is GameShell:
 		return
 	present_moves = shell.bought_moves

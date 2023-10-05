@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dcib4rbcrshxd" path="res://pidgepodge.png" id="6_8uxen"]
 [ext_resource type="PackedScene" uid="uid://crcjwi7yays2c" path="res://choose_critter_button.tscn" id="10_wxd6a"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_48t4x"]
+[sub_resource type="LabelSettings" id="LabelSettings_2toh8"]
 resource_local_to_scene = true
 font = ExtResource("5_0gi8d")
 font_size = 48
@@ -26,7 +26,7 @@ radius = 97.0052
 [sub_resource type="CircleShape2D" id="CircleShape2D_xmagu"]
 radius = 91.0879
 
-[sub_resource type="LabelSettings" id="LabelSettings_mde8s"]
+[sub_resource type="LabelSettings" id="LabelSettings_ljiri"]
 resource_local_to_scene = true
 font = ExtResource("5_0gi8d")
 font_size = 64
@@ -66,7 +66,7 @@ offset_right = -172.0
 offset_bottom = -142.0
 text = "Pick a critter,
 my guy."
-label_settings = SubResource("LabelSettings_48t4x")
+label_settings = SubResource("LabelSettings_2toh8")
 text_size = 48
 text_color = Color(0, 0, 0, 1)
 
@@ -115,7 +115,7 @@ offset_right = -811.0
 offset_bottom = -459.0
 text = "Ratler
 Type: Rodent"
-label_settings = SubResource("LabelSettings_mde8s")
+label_settings = SubResource("LabelSettings_ljiri")
 text_size = 64
 reveal = false
 

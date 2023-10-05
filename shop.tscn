@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://di68e17bafb4a"]
+[gd_scene load_steps=10 format=3 uid="uid://di68e17bafb4a"]
 
 [ext_resource type="Texture2D" uid="uid://b1r20hvbdnykc" path="res://shop-bg.png" id="1_rvq6u"]
 [ext_resource type="Texture2D" uid="uid://basoqtcwu3ppc" path="res://shop-keep-speech-bubble.png" id="2_6igjl"]
@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="3_542k6"]
 [ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="4_s2b23"]
 [ext_resource type="PackedScene" uid="uid://5u8n8r0pqqau" path="res://shop_buy_menu.tscn" id="6_634k0"]
+[ext_resource type="AudioStream" uid="uid://b6456uo7tajf1" path="res://sounds/Chipper Doodle.mp3" id="8_cfgek"]
 [ext_resource type="PackedScene" uid="uid://ri1cqbib30wl" path="res://leave_button.tscn" id="8_p5y76"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_hexqi"]
+[sub_resource type="LabelSettings" id="LabelSettings_lj1uk"]
 resource_local_to_scene = true
 font = ExtResource("4_s2b23")
 font_size = 64
@@ -32,7 +33,7 @@ offset_right = -212.0
 offset_bottom = -98.0
 text = "What's good,
 boss?"
-label_settings = SubResource("LabelSettings_hexqi")
+label_settings = SubResource("LabelSettings_lj1uk")
 text_size = 64
 text_color = Color(0, 0, 0, 1)
 
@@ -43,6 +44,11 @@ position = Vector2(277, 323)
 position = Vector2(999, 63)
 
 [node name="Kills" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_cfgek")
+autoplay = true
+bus = &"Music"
 
 [connection signal="text_done_displaying" from="SpeechBubble/TypingText" to="." method="_on_typing_text_text_done_displaying"]
 [connection signal="bought_hp" from="ShopBuyMenu" to="." method="_on_shop_buy_menu_bought_hp"]

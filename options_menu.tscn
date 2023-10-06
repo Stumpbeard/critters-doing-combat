@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://d4ib7565q5ek3"]
+
+[ext_resource type="Texture2D" uid="uid://c8rqy53j4bgg8" path="res://options-box.png" id="1_4vi3n"]
+[ext_resource type="Script" path="res://options_menu.gd" id="2_wdih3"]
+[ext_resource type="PackedScene" uid="uid://dn5sikohdf0vl" path="res://slider_bar.tscn" id="2_yo4hq"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="4_s8rhm"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="5_ecwl2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0w8mn"]
+resource_local_to_scene = true
+font = ExtResource("5_ecwl2")
+font_size = 32
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ui5ad"]
+radius = 17.0
+height = 106.0
+
+[node name="OptionsMenu" type="Sprite2D"]
+texture = ExtResource("1_4vi3n")
+script = ExtResource("2_wdih3")
+
+[node name="MusicSlider" parent="." instance=ExtResource("2_yo4hq")]
+position = Vector2(-87, -17)
+
+[node name="SFXSlider" parent="." instance=ExtResource("2_yo4hq")]
+position = Vector2(-87, -56)
+
+[node name="ReturnButton" type="Area2D" parent="."]
+position = Vector2(87, 30)
+
+[node name="TypingText" parent="ReturnButton" instance=ExtResource("4_s8rhm")]
+offset_right = 88.0
+offset_bottom = 35.0
+text = "Return"
+label_settings = SubResource("LabelSettings_0w8mn")
+text_size = 32
+play_sound = null
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnButton"]
+position = Vector2(45, 19)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ui5ad")
+metadata/_edit_lock_ = true
+
+[connection signal="slider_value_changed" from="MusicSlider" to="." method="_on_music_slider_slider_value_changed"]
+[connection signal="slider_value_changed" from="SFXSlider" to="." method="_on_sfx_slider_slider_value_changed"]
+[connection signal="input_event" from="ReturnButton" to="." method="_on_return_button_input_event"]
+[connection signal="mouse_entered" from="ReturnButton" to="." method="_on_return_button_mouse_entered"]
+[connection signal="mouse_exited" from="ReturnButton" to="." method="_on_return_button_mouse_exited"]

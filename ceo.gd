@@ -41,6 +41,6 @@ func change_type():
 func attack():
 	var attacked = super.attack()
 	if attacked:
-		var roll = randi() % 4
+		var roll = randi() % 3
 		if roll == 0:
 			change_type()

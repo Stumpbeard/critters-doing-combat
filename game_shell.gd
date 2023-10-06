@@ -170,3 +170,24 @@ func _on_critter_pick_critter_chosen(critter_type):
 	$CritterPick.queue_free()
 	create_tween().tween_property($BlackFade, "color:a", 0.0, 0.2)
 
+
+
+func _on_settings_button_input_event(viewport, event, shape_idx):
+	pass # Replace with function body.
+
+
+func _on_settings_button_button_pressed():
+	var tween = $SettingsButton/OptionsMenu.create_tween()
+	tween.tween_property($SettingsButton/OptionsMenu, "scale", Vector2(1, 1), 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.parallel()
+	tween.tween_property($SettingsButton/OptionsMenu, "position", Vector2(1152/6, 648/8), 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	get_tree().paused = true
+	
+
+
+func _on_options_menu_return_pressed():
+	var tween = create_tween()
+	tween.tween_property($SettingsButton/OptionsMenu, "scale", Vector2(0, 0), 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.parallel()
+	tween.tween_property($SettingsButton/OptionsMenu, "position", Vector2(0, 0), 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	get_tree().paused = false

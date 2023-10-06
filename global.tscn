@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://blhaklv25t5y4"]
+[gd_scene load_steps=22 format=3 uid="uid://blhaklv25t5y4"]
 
 [ext_resource type="Script" path="res://global.gd" id="1_omiqi"]
 [ext_resource type="AudioStream" uid="uid://vrvcv2g0oi7v" path="res://sounds/click.wav" id="2_sifwj"]
@@ -19,6 +19,8 @@
 [ext_resource type="AudioStream" uid="uid://bsmoudvhf2kxq" path="res://sounds/cheer.wav" id="17_7xkym"]
 [ext_resource type="AudioStream" uid="uid://cfciotmxt8f1q" path="res://sounds/chching.wav" id="18_1k0ah"]
 [ext_resource type="AudioStream" uid="uid://klqqsim42mfl" path="res://sounds/error.wav" id="19_qigub"]
+[ext_resource type="AudioStream" uid="uid://b2duejx1eu44v" path="res://sounds/elevator-up.wav" id="20_7kraw"]
+[ext_resource type="AudioStream" uid="uid://c003x56m3gmdg" path="res://sounds/elevator-close.wav" id="21_afpko"]
 
 [node name="Global" type="Node"]
 script = ExtResource("1_omiqi")
@@ -88,3 +90,9 @@ stream = ExtResource("18_1k0ah")
 
 [node name="Error" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_qigub")
+
+[node name="ElevatorUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_7kraw")
+
+[node name="ElevatorClose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_afpko")

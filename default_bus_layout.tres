@@ -1,7 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://vwg37dbw468h"]
-
-[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_0beyn"]
-resource_name = "Compressor"
+[gd_resource type="AudioBusLayout" format=3 uid="uid://vwg37dbw468h"]
 
 [resource]
 bus/1/name = &"Music"
@@ -16,5 +13,3 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
-bus/2/effect/0/effect = SubResource("AudioEffectCompressor_0beyn")
-bus/2/effect/0/enabled = true

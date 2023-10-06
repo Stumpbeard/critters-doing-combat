@@ -1,7 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dijj88kqb2op1"]
+[gd_scene load_steps=7 format=3 uid="uid://dijj88kqb2op1"]
 
 [ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_g46pn"]
 [ext_resource type="Texture2D" uid="uid://cecwaixl5t3vn" path="res://baggo.png" id="2_p0ko3"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_i7ejc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pw7v8"]
+resource_local_to_scene = true
+font = ExtResource("3_i7ejc")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3p4kt"]
+resource_local_to_scene = true
+font = ExtResource("3_i7ejc")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_spvbt"]
+resource_local_to_scene = true
+radius = 32.0156
 
 [node name="Baggo" instance=ExtResource("1_g46pn")]
 texture = ExtResource("2_p0ko3")
@@ -11,3 +29,12 @@ current_health = 5
 attack_speed = 1.2
 critter_type = 6
 status_types = Array[int]([2, 1])
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_pw7v8")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_3p4kt")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_spvbt")

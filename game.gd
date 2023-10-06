@@ -12,6 +12,7 @@ func _ready():
 	music.stream = song
 	music.name = "Music"
 	music.bus = "Music"
+	music.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(music)
 	play_music()
 	

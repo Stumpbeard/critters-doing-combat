@@ -72,6 +72,7 @@ func _on_gui_input(event, which_text):
 	if event is InputEventMouseButton:
 		if !event.pressed && event.button_index == 1:
 			if which_text != selected_text:
+				Global.play_click()
 				make_small(selected_text)
 				selected_text = which_text
 				make_big(selected_text)

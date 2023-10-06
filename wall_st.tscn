@@ -1,31 +1,33 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxydwwcxbr55w"]
+[gd_scene load_steps=13 format=3 uid="uid://bxydwwcxbr55w"]
 
 [ext_resource type="PackedScene" uid="uid://blbqohwbtfii1" path="res://game.tscn" id="1_d6p3h"]
 [ext_resource type="Script" path="res://wall_st.gd" id="2_fbcob"]
 [ext_resource type="Texture2D" uid="uid://ddff6ygoing71" path="res://lobby-bg.png" id="2_ihosi"]
+[ext_resource type="AudioStream" uid="uid://dhsv1bojpbxff" path="res://sounds/Beauty Flow.mp3" id="3_1gr86"]
 [ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="4_iu302"]
 [ext_resource type="PackedScene" uid="uid://o3h7msdh5nqx" path="res://securibull.tscn" id="4_vdgdg"]
 [ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="5_wqxei"]
 [ext_resource type="Texture2D" uid="uid://cuvcd7bxrjiqj" path="res://elevator-left.png" id="6_3afr7"]
 [ext_resource type="Texture2D" uid="uid://w5ur28bfe786" path="res://elevator-right.png" id="7_su8mw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7n7as"]
+[sub_resource type="LabelSettings" id="LabelSettings_s6j7y"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_aiyu1"]
+[sub_resource type="LabelSettings" id="LabelSettings_fejh3"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_kumel"]
+[sub_resource type="LabelSettings" id="LabelSettings_xipps"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
 
 [node name="WallSt" instance=ExtResource("1_d6p3h")]
 script = ExtResource("2_fbcob")
+song = ExtResource("3_1gr86")
 
 [node name="TextureRect" parent="." index="0"]
 texture = ExtResource("2_ihosi")
@@ -46,8 +48,9 @@ offset_bottom = 324.0
 text = "You're not
 supposed to
 be here."
-label_settings = SubResource("LabelSettings_7n7as")
+label_settings = SubResource("LabelSettings_s6j7y")
 text_size = 48
+play_sound = false
 
 [node name="CEOText" parent="." index="8" instance=ExtResource("4_iu302")]
 visible = false
@@ -58,8 +61,9 @@ offset_bottom = 375.0
 text = "I suppose
 you want
 a meeting..."
-label_settings = SubResource("LabelSettings_aiyu1")
+label_settings = SubResource("LabelSettings_fejh3")
 text_size = 48
+play_sound = false
 
 [node name="GodText" parent="." index="9" instance=ExtResource("4_iu302")]
 visible = false
@@ -69,8 +73,9 @@ offset_right = 750.0
 offset_bottom = 375.0
 text = "Oh little
 one..."
-label_settings = SubResource("LabelSettings_kumel")
+label_settings = SubResource("LabelSettings_xipps")
 text_size = 48
+play_sound = false
 
 [node name="Elevator" type="Node2D" parent="." index="10"]
 z_index = 2

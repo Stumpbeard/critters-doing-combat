@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://br4ydv4ew1fns"]
+
+[ext_resource type="Texture2D" uid="uid://cbwwuvnxvl80w" path="res://settings-button.png" id="1_1eg25"]
+[ext_resource type="Script" path="res://settings_button.gd" id="1_t86wq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dw8h"]
+radius = 29.1548
+
+[node name="SettingsButton" type="Area2D"]
+script = ExtResource("1_t86wq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1eg25")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0dw8h")
+metadata/_edit_lock_ = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

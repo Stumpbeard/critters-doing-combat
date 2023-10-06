@@ -4,7 +4,9 @@ var office_img = preload("res://office-bg.png")
 var god_img = preload("res://god-bg.png")
 
 var ceo_scene = preload("res://ceo.tscn")
+var ceo_song = preload("res://sounds/Jet Fueled Vixen.mp3")
 var god_scene = preload("res://god.tscn")
+var god_song = preload("res://sounds/OWA.mp3")
 
 var in_lobby = true
 var in_office = false
@@ -44,6 +46,7 @@ func _on_battle_box_killed_boss():
 
 
 func guard_text_one():
+	$GuardText.play_sound = true
 	$GuardText.text = "Hey..."
 	$GuardText.visible = true
 	$GuardText.reset()
@@ -54,11 +57,13 @@ func guard_text_two():
 	
 	
 func ceo_text_one():
+	$CEOText.play_sound = true
 	$CEOText.text = "I suppose\nyou want\na meeting..."
 	$CEOText.visible = true
 	$CEOText.reset()
 	
 func god_text_one():
+	$GodText.play_sound = true
 	$GodText.text = "Oh little\none..."
 	$GodText.visible = true
 	$GodText.reset()
@@ -90,11 +95,13 @@ func change_bg():
 		in_office = true
 		in_lobby = false
 		$BattleBox.boss_scene = ceo_scene
+		get_node("Music").stream = ceo_song
 	elif in_office:
 		$TextureRect.texture = god_img
 		in_office = false
 		in_sky = true
 		$BattleBox.boss_scene = god_scene
+		get_node("Music").stream = god_song
 		
 
 func print_new_text():
@@ -126,19 +133,24 @@ func close_elevator_doors():
 	tween.parallel()
 	tween.tween_property(self, "position", Vector2(-144, -81), 0.2)
 	tween.parallel()
+	tween.tween_callback(Global.play_elevator_close)
 	tween.tween_property($Elevator/ElevatorDoorLeft, "position:x", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.parallel()
 	tween.tween_property($Elevator/ElevatorDoorRight, "position:x", 1152/2, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_interval(0.5)
+	tween.tween_callback(Global.play_elevator_up)
 	tween.tween_callback(rumble_doors)
 	tween.tween_callback(change_bg)
 	tween.tween_interval(3.5)
+	tween.tween_callback(Global.stop_elevator_up)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2)
 	tween.parallel()
 	tween.tween_property(self, "position", Vector2(0, 0), 0.2)
 	tween.parallel()
+	tween.tween_callback(Global.play_elevator_close)
 	tween.tween_property($Elevator/ElevatorDoorLeft, "position:x", -576, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	tween.parallel()
 	tween.tween_property($Elevator/ElevatorDoorRight, "position:x", 1152, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	tween.tween_callback(print_new_text)
+	tween.tween_callback(get_node("Music").play)
 

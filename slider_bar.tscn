@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://dn5sikohdf0vl"]
+
+[ext_resource type="Texture2D" uid="uid://bpr0npjaqpguo" path="res://empty-sound-bar.png" id="1_espfc"]
+[ext_resource type="Texture2D" uid="uid://ue5e0kgbok68" path="res://full-sound-bar.png" id="2_1hdrm"]
+[ext_resource type="Script" path="res://slider_bar.gd" id="2_vkvrl"]
+[ext_resource type="Texture2D" uid="uid://bowta7nkf5klh" path="res://slider-grabber.png" id="3_qu1vs"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="5_yjmnh"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="6_w3oar"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tkcc"]
+radius = 12.0
+height = 42.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytqsd"]
+size = Vector2(188, 62)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7s0y4"]
+resource_local_to_scene = true
+font = ExtResource("6_w3oar")
+font_size = 32
+
+[node name="SliderBar" type="Sprite2D"]
+texture = ExtResource("1_espfc")
+centered = false
+script = ExtResource("2_vkvrl")
+
+[node name="FillClip" type="ColorRect" parent="."]
+clip_children = 1
+offset_bottom = 28.0
+mouse_filter = 2
+
+[node name="Fill" type="Sprite2D" parent="FillClip"]
+texture = ExtResource("2_1hdrm")
+centered = false
+
+[node name="Grabber" type="Sprite2D" parent="."]
+texture = ExtResource("3_qu1vs")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="Grabber"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber/Area2D"]
+position = Vector2(4, 15)
+shape = SubResource("CapsuleShape2D_5tkcc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(75, 14)
+shape = SubResource("RectangleShape2D_ytqsd")
+
+[node name="PercentText" parent="." instance=ExtResource("5_yjmnh")]
+offset_left = 175.0
+offset_top = -2.0
+offset_right = 225.0
+offset_bottom = 33.0
+text = "70%"
+label_settings = SubResource("LabelSettings_7s0y4")
+text_size = 32
+reveal = false
+play_sound = null
+
+[connection signal="input_event" from="Grabber/Area2D" to="." method="_on_grabber_area_2d_input_event"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

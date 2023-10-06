@@ -39,6 +39,15 @@ func play_chaching():
 	
 func play_error():
 	$Error.play()
+	
+func play_elevator_up():
+	$ElevatorUp.play()
+	
+func stop_elevator_up():
+	$ElevatorUp.stop()
+	
+func play_elevator_close():
+	$ElevatorClose.play()
 
 func play_critter_attack(critter_type):
 	match critter_type:
@@ -48,7 +57,7 @@ func play_critter_attack(critter_type):
 			$Flap.play()
 		Critter.Critters.COFFEENY, Critter.Critters.PIZZALING, Critter.Critters.ROACHMEISER:
 			$Squish.play()
-		Critter.Critters.FERROTH, Critter.Critters.CEO:
+		Critter.Critters.FERROTH, Critter.Critters.GOD:
 			$Angel.play()
 		Critter.Critters.DEMOGATOR, Critter.Critters.SECURIBULL, Critter.Critters.CEO:
 			$Fire.play()

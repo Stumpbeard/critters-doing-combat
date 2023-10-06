@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw468y6s1rd0f"]
+[gd_scene load_steps=6 format=3 uid="uid://cw468y6s1rd0f"]
 
 [ext_resource type="Script" path="res://game_shell.gd" id="1_kbsvt"]
 [ext_resource type="PackedScene" uid="uid://b5pthvjwwk5wk" path="res://intro_screen.tscn" id="1_ou5oh"]
 [ext_resource type="PackedScene" uid="uid://06mg60yat2qo" path="res://critter_pick.tscn" id="2_odlu0"]
+[ext_resource type="PackedScene" uid="uid://br4ydv4ew1fns" path="res://settings_button.tscn" id="4_by7m0"]
+[ext_resource type="PackedScene" uid="uid://d4ib7565q5ek3" path="res://options_menu.tscn" id="5_1ntgg"]
 
 [node name="GameShell" type="Control"]
 layout_mode = 3
@@ -20,6 +22,15 @@ layout_mode = 1
 [node name="IntroScreen" parent="." instance=ExtResource("1_ou5oh")]
 layout_mode = 1
 
+[node name="SettingsButton" parent="." instance=ExtResource("4_by7m0")]
+process_mode = 3
+z_index = 2
+position = Vector2(29, 27)
+
+[node name="OptionsMenu" parent="SettingsButton" instance=ExtResource("5_1ntgg")]
+process_mode = 2
+scale = Vector2(1e-05, 1e-05)
+
 [node name="BlackFade" type="ColorRect" parent="."]
 z_index = 4096
 layout_mode = 1
@@ -33,3 +44,5 @@ color = Color(0, 0, 0, 0)
 
 [connection signal="critter_chosen" from="CritterPick" to="." method="_on_critter_pick_critter_chosen"]
 [connection signal="start_game" from="IntroScreen" to="." method="_on_intro_screen_start_game"]
+[connection signal="button_pressed" from="SettingsButton" to="." method="_on_settings_button_button_pressed"]
+[connection signal="return_pressed" from="SettingsButton/OptionsMenu" to="." method="_on_options_menu_return_pressed"]

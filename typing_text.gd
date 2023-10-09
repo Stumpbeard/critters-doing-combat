@@ -39,6 +39,7 @@ func _physics_process(delta):
 		
 func reset():
 	visible_characters = 0
+	visible_ratio = 0.0
 	ticks = 0
 	if play_sound:
 		$Sound.play()

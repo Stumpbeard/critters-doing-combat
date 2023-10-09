@@ -21,9 +21,9 @@ resource_local_to_scene = true
 radius = 32.0156
 
 [node name="Ratler" instance=ExtResource("1_bfgel")]
-max_health = 20
-current_health = 20
-damage_value = [5, 6]
+max_health = 50
+current_health = 50
+damage_value = [50, 50]
 
 [node name="Name" parent="HoverInfo" index="0"]
 label_settings = SubResource("LabelSettings_nvlsa")

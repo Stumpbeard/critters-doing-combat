@@ -48,6 +48,9 @@ func stop_elevator_up():
 	
 func play_elevator_close():
 	$ElevatorClose.play()
+	
+func play_waves():
+	$Waves.play()
 
 func play_critter_attack(critter_type):
 	match critter_type:

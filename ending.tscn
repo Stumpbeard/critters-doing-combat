@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://co5inh4aw7xwe"]
+
+[ext_resource type="Texture2D" uid="uid://b6lvn22ssaxfc" path="res://ending-bg.png" id="1_mgrxg"]
+[ext_resource type="Script" path="res://Ending.gd" id="2_xsoai"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="3_ui0dn"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="4_x801b"]
+[ext_resource type="Texture2D" uid="uid://c35vdosodfbcw" path="res://ratler.png" id="5_a1f7g"]
+[ext_resource type="AudioStream" uid="uid://dqs2eyoeveexh" path="res://sounds/Morning.mp3" id="6_6p8mj"]
+[ext_resource type="PackedScene" uid="uid://w2kynn6p4lve" path="res://credits.tscn" id="7_qiqan"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ayf4d"]
+resource_local_to_scene = true
+font = ExtResource("4_x801b")
+font_size = 64
+
+[node name="Ending" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_mgrxg")
+script = ExtResource("2_xsoai")
+metadata/_edit_lock_ = true
+
+[node name="TypingText" parent="." instance=ExtResource("3_ui0dn")]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 60.0
+offset_bottom = 64.0
+text = ""
+label_settings = SubResource("LabelSettings_ayf4d")
+horizontal_alignment = 0
+text_size = 64
+play_sound = false
+metadata/_edit_lock_ = true
+
+[node name="SailingCritter" type="Sprite2D" parent="."]
+position = Vector2(-20, 652)
+texture = ExtResource("5_a1f7g")
+
+[node name="WhiteFade" type="ColorRect" parent="."]
+z_index = 900
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6p8mj")
+
+[node name="Credits" parent="." instance=ExtResource("7_qiqan")]
+layout_mode = 1
+offset_top = 648.0
+offset_bottom = 648.0

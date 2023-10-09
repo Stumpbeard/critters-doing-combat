@@ -1,0 +1,282 @@
+[gd_scene load_steps=18 format=3 uid="uid://w2kynn6p4lve"]
+
+[ext_resource type="Script" path="res://Credits.gd" id="1_myry8"]
+[ext_resource type="PackedScene" uid="uid://gtxesqctsrwo" path="res://typing_text.tscn" id="2_s80x5"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_p125a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_76rcc"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_wm07r"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_ln674"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_5t17n"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_qowao"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_cltl8"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_fgl7q"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_b1lo7"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_oym71"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ggo0g"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_q4y1e"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_nef2s"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_hfclt"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_wnop5"]
+resource_local_to_scene = true
+font = ExtResource("3_p125a")
+font_size = 64
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_myry8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 28.0
+offset_right = 346.0
+offset_bottom = 118.0
+
+[node name="TypingText" parent="VBoxContainer" instance=ExtResource("2_s80x5")]
+layout_mode = 2
+text = "Art, code, & design"
+label_settings = SubResource("LabelSettings_76rcc")
+text_size = 32
+reveal = false
+metadata/_edit_lock_ = true
+
+[node name="TypingText2" parent="VBoxContainer" instance=ExtResource("2_s80x5")]
+layout_mode = 2
+text = "Zak Thompson"
+label_settings = SubResource("LabelSettings_wm07r")
+text_size = 48
+reveal = false
+metadata/_edit_lock_ = true
+
+[node name="TypingText3" parent="VBoxContainer" instance=ExtResource("2_s80x5")]
+layout_mode = 2
+text = "https://zak.town"
+label_settings = SubResource("LabelSettings_ln674")
+text_size = 32
+
+[node name="TypingText" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 295.0
+offset_right = 941.0
+offset_bottom = 400.0
+text = "\"Beauty Flow\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_5t17n")
+text_size = 32
+reveal = false
+
+[node name="TypingText2" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 425.0
+offset_right = 813.0
+offset_bottom = 530.0
+text = "\"Chipper Doodle\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_qowao")
+text_size = 32
+reveal = false
+
+[node name="TypingText3" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 553.0
+offset_right = 1044.0
+offset_bottom = 658.0
+text = "\"Doobly Doo\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_cltl8")
+text_size = 32
+reveal = false
+
+[node name="TypingText4" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 680.0
+offset_right = 835.0
+offset_bottom = 785.0
+text = "\"Jerry Five\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_fgl7q")
+text_size = 32
+reveal = false
+
+[node name="TypingText5" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 798.0
+offset_right = 1146.0
+offset_bottom = 903.0
+text = "\"Jet Fueled Vixen\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_b1lo7")
+text_size = 32
+reveal = false
+
+[node name="TypingText6" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 922.0
+offset_right = 791.0
+offset_bottom = 1027.0
+text = "\"Morning\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_oym71")
+text_size = 32
+reveal = false
+
+[node name="TypingText7" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 1059.0
+offset_right = 872.0
+offset_bottom = 1164.0
+text = "\"Pleasant Porridge\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_ggo0g")
+text_size = 32
+reveal = false
+
+[node name="TypingText8" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 1192.0
+offset_right = 964.0
+offset_bottom = 1297.0
+text = "\"Salty Ditty\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_q4y1e")
+text_size = 32
+reveal = false
+
+[node name="TypingText9" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 1324.0
+offset_right = 1048.0
+offset_bottom = 1429.0
+text = "\"Video Dungeon Crawl\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+label_settings = SubResource("LabelSettings_nef2s")
+text_size = 32
+reveal = false
+
+[node name="TypingText10" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 1652.0
+offset_right = 843.0
+offset_bottom = 2632.0
+text = "calm seawaves by Eelke 
+Ocean Waves.wav by Noted451 
+Hatch/Door Close by JustInvoke 
+metal elevator door close by gamedog74 
+Elevator by marcel_farres 
+Mechanical Keyboard Typing by GeorgeHopkins 
+E6.wav by yommyy 
+Ch-Ching.wav by hgernhardt 
+VICTORY CRY REVERB 2.wav by chripei 
+WARNING.WAV by erkanozan 
+Damage sound effect by Raclure 
+short wind noise by michimuc2 
+PowerUp.wav by kianda 
+Heart collect/Healing (Retro) by ReincarnatedEchoes 
+Fire Magic by qubodup 
+Magic chorus by punisherdan 
+Nasty splat sound.wav by simenfo1 
+swoosh10.wav by kwahmah_02 
+Video Game Squeak by Breviceps 
+Explosion, 8-bit, 01.wav by InspectorJ 
+Yeah! by xavierrrangel 
+SFX_WHOOSHYKORN_rising_17.wav by MrFossy 
+Ui sounds - Shimmering success by NXRT 
+blip1.wav by nsstudios 
+Select, Granted 06.wav by MATRIXXX_ 
+Select, Granted 04.wav by MATRIXXX_
+from https://freesound.org
+Licensed under Creative Commons"
+label_settings = SubResource("LabelSettings_hfclt")
+text_size = 32
+reveal = false
+
+[node name="Thanks" parent="." instance=ExtResource("2_s80x5")]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 2990.0
+offset_right = 734.0
+offset_bottom = 3124.0
+text = "THANKS FOR
+PLAYING!"
+label_settings = SubResource("LabelSettings_wnop5")
+text_size = 64
+reveal = false
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

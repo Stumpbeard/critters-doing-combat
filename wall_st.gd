@@ -37,9 +37,8 @@ func _on_battle_box_killed_boss():
 	if in_sky:
 		await get_tree().create_timer(2.0).timeout
 		var tween = create_tween()
-		tween.tween_property($BattleBox/Fade, "color:a", 1.0, 3.0)
-		emit_signal("killed_god")
-		_on_battle_box_battle_over()
+		tween.tween_property($WhiteFade, "color:a", 1.0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+		tween.tween_callback(emit_signal.bind("killed_god"))
 	else:
 		await get_tree().create_timer(2.0).timeout
 		close_elevator_doors()

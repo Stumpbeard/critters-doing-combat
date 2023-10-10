@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dqs2eyoeveexh" path="res://sounds/Morning.mp3" id="6_6p8mj"]
 [ext_resource type="PackedScene" uid="uid://w2kynn6p4lve" path="res://credits.tscn" id="7_qiqan"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ayf4d"]
+[sub_resource type="LabelSettings" id="LabelSettings_0jnru"]
 resource_local_to_scene = true
 font = ExtResource("4_x801b")
 font_size = 64
@@ -22,11 +22,11 @@ metadata/_edit_lock_ = true
 
 [node name="TypingText" parent="." instance=ExtResource("3_ui0dn")]
 layout_mode = 0
-offset_left = 32.0
-offset_right = 60.0
+offset_left = 64.0
+offset_right = 92.0
 offset_bottom = 64.0
 text = ""
-label_settings = SubResource("LabelSettings_ayf4d")
+label_settings = SubResource("LabelSettings_0jnru")
 horizontal_alignment = 0
 text_size = 64
 play_sound = false
@@ -48,6 +48,7 @@ metadata/_edit_lock_ = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_6p8mj")
+bus = &"Music"
 
 [node name="Credits" parent="." instance=ExtResource("7_qiqan")]
 layout_mode = 1

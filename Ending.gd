@@ -6,7 +6,7 @@ extends TextureRect
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.play_waves()
-	create_tween().tween_property($WhiteFade, "color:a", 0, 2.0)
+	create_tween().tween_property($WhiteFade, "color:a", 0, 4.0)
 	$SailingCritter.texture = critter_graphic
 	var waves_tween = create_tween()
 	waves_tween.tween_interval(2.0)
@@ -19,7 +19,7 @@ func _ready():
 	tween.tween_interval(2.0)
 	
 	var tween_text = create_tween()
-	tween_text.tween_interval(4.0)
+	tween_text.tween_interval(6.0)
 	tween_text.tween_callback(print_text_one)
 
 func bob_up():

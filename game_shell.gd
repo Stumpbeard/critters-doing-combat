@@ -12,6 +12,8 @@ var wall_st_level_scene: PackedScene = preload("res://wall_st.tscn")
 var subway_scene: PackedScene = preload("res://map_screen.tscn")
 var bodega_scene: PackedScene = preload("res://shop.tscn")
 
+var end_scene = preload("res://ending.tscn")
+
 var ratler_scene = preload("res://ratler.tscn")
 var pidgepodge_scene = preload("res://pidge_podge.tscn")
 var coffeeny_scene = preload("res://coffeeny.tscn")
@@ -85,6 +87,7 @@ func _on_arrived_at_destination(dest):
 			level = bridge_level_scene.instantiate()
 		"wall_st":
 			level = wall_st_level_scene.instantiate()
+			level.connect("killed_god", roll_credits)
 	level.connect("battle_over", _on_battle_to_subway)
 	level.get_node("BattleBox").connect("heal_used", _on_heal_used)
 	level.get_node("BattleBox").set_player(chosen_player_type())
@@ -95,6 +98,12 @@ func _on_arrived_at_destination(dest):
 	add_child(level)
 	map_scene.queue_free()
 	create_tween().tween_property($BlackFade, "color:a", 0.0, 0.2)
+	
+	
+func roll_credits():
+	battle_scene.queue_free()
+	var ending = end_scene.instantiate()
+	add_child(ending)
 	
 
 func _on_go_to_bodega():
@@ -191,3 +200,8 @@ func _on_options_menu_return_pressed():
 	tween.parallel()
 	tween.tween_property($SettingsButton/OptionsMenu, "position", Vector2(0, 0), 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	get_tree().paused = false
+
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed && event.keycode == KEY_ESCAPE:
+			get_tree().quit()

@@ -193,8 +193,9 @@ func spawn_boss():
 	add_child(boss)
 	create_tween().tween_property(boss, "position:x", 648, 2.0)
 	await get_tree().create_timer(3.0).timeout
-	boss.is_attacking = true
-	boss.is_boss_entering = false
+	if boss:
+		boss.is_attacking = true
+		boss.is_boss_entering = false
 
 
 func _on_hero_died():

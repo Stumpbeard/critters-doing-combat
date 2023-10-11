@@ -1,9 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3qpavrhpgcak"]
+[gd_scene load_steps=7 format=3 uid="uid://b3qpavrhpgcak"]
 
 [ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_5tgg8"]
 [ext_resource type="Texture2D" uid="uid://5p5smus6yekq" path="res://coffeeny.png" id="2_avc7v"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_4nsfx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3aogg"]
+resource_local_to_scene = true
+font = ExtResource("3_4nsfx")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjh8i"]
+resource_local_to_scene = true
+font = ExtResource("3_4nsfx")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xlpe"]
+resource_local_to_scene = true
+radius = 32.0156
 
 [node name="Coffeeny" instance=ExtResource("1_5tgg8")]
 texture = ExtResource("2_avc7v")
 critter_type = 8
 status_types = Array[int]([1])
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_3aogg")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_tjh8i")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_7xlpe")

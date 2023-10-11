@@ -249,7 +249,7 @@ func increase_strength():
 
 
 func increase_speed():
-	attack_speed = max(0.1, attack_speed - 0.1)
+	attack_speed = max(0.1, attack_speed - 0.02)
 
 
 func heal_up():

@@ -1,12 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3kgdvn4vyrgd"]
+[gd_scene load_steps=7 format=3 uid="uid://d3kgdvn4vyrgd"]
 
 [ext_resource type="PackedScene" uid="uid://bh2n0m85774ex" path="res://critter.tscn" id="1_huopi"]
 [ext_resource type="Texture2D" uid="uid://b0ldqy77m2ynk" path="res://gullmeyer.png" id="2_yn7ig"]
+[ext_resource type="FontFile" uid="uid://d2b1w5gku8n4v" path="res://GrapeSoda.ttf" id="3_646pk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t6cee"]
+resource_local_to_scene = true
+font = ExtResource("3_646pk")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s3s5w"]
+resource_local_to_scene = true
+font = ExtResource("3_646pk")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hsofg"]
+resource_local_to_scene = true
+radius = 32.0156
 
 [node name="Gullmeyer" instance=ExtResource("1_huopi")]
 texture = ExtResource("2_yn7ig")
-max_health = 6
-current_health = 6
-damage_value = [1, 4]
+max_health = 5
+current_health = 5
+attack_speed = 1.8
+damage_value = [2, 2]
 critter_type = 3
 status_types = Array[int]([2])
+
+[node name="Name" parent="HoverInfo" index="0"]
+label_settings = SubResource("LabelSettings_t6cee")
+
+[node name="Type" parent="HoverInfo" index="1"]
+label_settings = SubResource("LabelSettings_s3s5w")
+
+[node name="CollisionShape2D" parent="HoverActivation" index="0"]
+shape = SubResource("CircleShape2D_hsofg")

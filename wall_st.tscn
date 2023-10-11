@@ -10,17 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://cuvcd7bxrjiqj" path="res://elevator-left.png" id="6_3afr7"]
 [ext_resource type="Texture2D" uid="uid://w5ur28bfe786" path="res://elevator-right.png" id="7_su8mw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_i8s1n"]
+[sub_resource type="LabelSettings" id="LabelSettings_4h6ef"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_ytpj3"]
+[sub_resource type="LabelSettings" id="LabelSettings_p3srw"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_1melb"]
+[sub_resource type="LabelSettings" id="LabelSettings_jgxnp"]
 resource_local_to_scene = true
 font = ExtResource("5_wqxei")
 font_size = 48
@@ -48,7 +48,7 @@ offset_bottom = 324.0
 text = "You're not
 supposed to
 be here."
-label_settings = SubResource("LabelSettings_i8s1n")
+label_settings = SubResource("LabelSettings_4h6ef")
 text_size = 48
 play_sound = false
 
@@ -61,7 +61,7 @@ offset_bottom = 375.0
 text = "I suppose
 you want
 a meeting..."
-label_settings = SubResource("LabelSettings_ytpj3")
+label_settings = SubResource("LabelSettings_p3srw")
 text_size = 48
 play_sound = false
 
@@ -73,7 +73,7 @@ offset_right = 750.0
 offset_bottom = 375.0
 text = "Oh little
 one..."
-label_settings = SubResource("LabelSettings_1melb")
+label_settings = SubResource("LabelSettings_jgxnp")
 text_size = 48
 play_sound = false
 

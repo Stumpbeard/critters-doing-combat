@@ -36,8 +36,8 @@ position = Vector2(916, 526)
 
 [node name="SpawnSystem" parent="." instance=ExtResource("6_u23bm")]
 layout_mode = 1
-spawn_timer_speed = 2.0
-heat_bar_speed = 0.5
+spawn_timer_speed = 3.0
+heat_bar_speed = 0.08
 metadata/_edit_lock_ = true
 
 [connection signal="heal_pressed" from="HealButton" to="." method="_on_heal_button_heal_pressed"]

@@ -18,7 +18,7 @@ func _ready():
 	var dam_range = calc_strength()
 	$DamageUpHave.text = "%s-%s" % [dam_range[0], dam_range[1]]
 	$DamageUpCost.text = "%s" % [1 + level_up_info["strength"]]
-	var attacks_per_second = make_speed_str(1.0 / (1.0 - level_up_info['speed'] * 0.1))
+	var attacks_per_second = make_speed_str(1.0 / (1.0 - level_up_info['speed'] * 0.02))
 	$SpeedUpHave.text = "%s/s" % [attacks_per_second]
 	$SpeedUpCost.text = "%s" % [1 + level_up_info["speed"]]
 	$TotalLevel.text = "Lv%s" % [1 + level_up_info["hp"] + level_up_info["strength"] + level_up_info["speed"]]

@@ -24,9 +24,10 @@ radius = 32.0156
 [node name="Baggo" instance=ExtResource("1_g46pn")]
 texture = ExtResource("2_p0ko3")
 offset = Vector2(2.08165e-12, -36)
-max_health = 5
-current_health = 5
-attack_speed = 1.2
+max_health = 180
+current_health = 180
+attack_speed = 1.7
+damage_value = [1, 10]
 critter_type = 6
 status_types = Array[int]([2, 1])
 

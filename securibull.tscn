@@ -24,9 +24,10 @@ radius = 32.0156
 [node name="Securibull" instance=ExtResource("1_qxbgw")]
 texture = ExtResource("2_jri1d")
 offset = Vector2(2.08165e-12, -36)
-max_health = 25
-current_health = 25
-damage_value = [6, 10]
+max_health = 360
+current_health = 360
+attack_speed = 1.8
+damage_value = [7, 9]
 critter_type = 11
 status_types = Array[int]([4])
 

@@ -26,9 +26,10 @@ radius = 32.0156
 texture = ExtResource("2_67x3i")
 offset = Vector2(2.08165e-12, -32)
 script = ExtResource("3_cuiyj")
-max_health = 75
-current_health = 75
-damage_value = [1, 1]
+max_health = 540
+current_health = 540
+attack_speed = 1.1
+damage_value = [4, 7]
 critter_type = 12
 status_types = Array[int]([4, 0])
 

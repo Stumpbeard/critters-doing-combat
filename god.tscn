@@ -24,8 +24,10 @@ radius = 32.0156
 [node name="God" instance=ExtResource("1_8o6ec")]
 texture = ExtResource("2_143hq")
 offset = Vector2(2.08165e-12, -112)
-max_health = 100
-current_health = 100
+max_health = 1920
+current_health = 1920
+attack_speed = 2.1
+damage_value = [10, 18]
 critter_type = 13
 status_types = Array[int]([3, 4])
 

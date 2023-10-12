@@ -8,27 +8,54 @@ signal bought_speed
 @export var level_up_info = {"level": 1, "to_next_level": 1, "hp": 0, "strength": 0, "speed": 0, "kill_dollars": 0}
 @export var heals = 0
 
+var player_type = "Ratler"
+
 var exploding_number_scene = preload("res://exploding_number.tscn")
+
+var ratler_scene = preload("res://ratler.tscn")
+var pidgepodge_scene = preload("res://pidge_podge.tscn")
+var coffeeny_scene = preload("res://coffeeny.tscn")
+
+var starting_hp = 0
+var starting_dam_min = 0
+var starting_dam_max = 0
+var starting_attack_delay = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var critter
+	match player_type:
+		"Ratler":
+			critter = ratler_scene.instantiate()
+		"PidgePodge":
+			critter = pidgepodge_scene.instantiate()
+		"Coffeeny":
+			critter = coffeeny_scene.instantiate()
+	starting_hp = critter.max_health
+	starting_dam_min = critter.damage_value[0]
+	starting_dam_max = critter.damage_value[1]
+	starting_attack_delay = critter.attack_speed
+			
 	$HealsHave.text = "x%s" % [heals]
 	$HealthUpCost.text = "%s" % [1 + level_up_info["hp"]]
-	$HealthUpHave.text = "%s" % [10 + level_up_info["hp"]]
-	var dam_range = calc_strength()
+	$HealthUpHave.text = "%s" % [starting_hp + level_up_info["hp"]]
+	var dam_range = calc_strength(starting_dam_min, starting_dam_max)
 	$DamageUpHave.text = "%s-%s" % [dam_range[0], dam_range[1]]
 	$DamageUpCost.text = "%s" % [1 + level_up_info["strength"]]
-	var attacks_per_second = make_speed_str(1.0 / (1.0 - level_up_info['speed'] * 0.02))
+	var attacks_per_second = make_speed_str(1.0 / (starting_attack_delay - level_up_info['speed'] * 0.02))
 	$SpeedUpHave.text = "%s/s" % [attacks_per_second]
 	$SpeedUpCost.text = "%s" % [1 + level_up_info["speed"]]
 	$TotalLevel.text = "Lv%s" % [1 + level_up_info["hp"] + level_up_info["strength"] + level_up_info["speed"]]
 	$KillsToSpend.text = "Kills: %s" % [level_up_info["kill_dollars"]]
 	
 	$Selector.visible = false
+	
+func set_player_type(new_player_type):
+	player_type = new_player_type
 
-func calc_strength():
+func calc_strength(dam_min, dam_max):
 	var strength_ups = level_up_info["strength"]
-	var damage_value = [1, 3]
+	var damage_value = [dam_min, dam_max]
 	for i in range(strength_ups):
 		damage_value[1] += 1
 		if damage_value[1] % 6 == 0:
@@ -41,7 +68,7 @@ func make_speed_str(num):
 	if len(split_string) <= 1:
 		return num_string
 	if len(split_string[1]) > 2:
-		split_string[1] = split_string[1].substr(0, 2)
+		split_string[1] = split_string[1].substr(0, 1)
 	return ".".join(split_string)
 
 
@@ -107,7 +134,7 @@ func _on_health_select_input_event(viewport, event, shape_idx):
 				exploding_number.global_position = $KillsToSpend.global_position + Vector2(100, 0)
 				emit_signal("bought_hp")
 				$HealthUpCost.text = "%s" % [1 + level_up_info["hp"]]
-				$HealthUpHave.text = "%s" % [10 + level_up_info["hp"]]
+				$HealthUpHave.text = "%s" % [starting_hp + level_up_info["hp"]]
 				$KillsToSpend.text = "Kills: %s" % [level_up_info["kill_dollars"]]
 				$TotalLevel.text = "Lv%s" % [1 + level_up_info["hp"] + level_up_info["strength"] + level_up_info["speed"]]
 				
@@ -122,7 +149,7 @@ func _on_damage_select_input_event(viewport, event, shape_idx):
 				add_child(exploding_number)
 				exploding_number.global_position = $KillsToSpend.global_position + Vector2(100, 0)
 				emit_signal("bought_strength")
-				var dam_range = calc_strength()
+				var dam_range = calc_strength(starting_dam_min, starting_dam_max)
 				$DamageUpHave.text = "%s-%s" % [dam_range[0], dam_range[1]]
 				$DamageUpCost.text = "%s" % [1 + level_up_info["strength"]]
 				$KillsToSpend.text = "Kills: %s" % [level_up_info["kill_dollars"]]
@@ -138,7 +165,7 @@ func _on_speed_select_input_event(viewport, event, shape_idx):
 				add_child(exploding_number)
 				exploding_number.global_position = $KillsToSpend.global_position + Vector2(100, 0)
 				emit_signal("bought_speed")
-				var attacks_per_second = make_speed_str(1.0 / (1.0 - level_up_info['speed'] * 0.1))
+				var attacks_per_second = make_speed_str(1.0 / (starting_attack_delay - level_up_info['speed'] * 0.1))
 				$SpeedUpHave.text = "%s/s" % [attacks_per_second]
 				$SpeedUpCost.text = "%s" % [1 + level_up_info["speed"]]
 				$KillsToSpend.text = "Kills: %s" % [level_up_info["kill_dollars"]]

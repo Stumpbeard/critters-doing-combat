@@ -26,7 +26,7 @@ var shop_scene = null
 
 var kills = {}
 var heat_ratios = {"city": 0.0, "bridge": 0.0, "pizzeria": 0.0, "wall_st": 0.0}
-var heals = 5
+var heals = 2
 
 var coming_from = ''
 
@@ -116,6 +116,7 @@ func _on_go_to_bodega():
 	bodega.get_node("ShopBuyMenu").connect("bought_strength", _on_bought_strength)
 	bodega.get_node("ShopBuyMenu").connect("bought_speed", _on_bought_speed)
 	bodega.get_node("LeaveButton").connect("leave_bodega", _on_leave_bodega)
+	bodega.get_node("ShopBuyMenu").set_player_type(player_type)
 	shop_scene = bodega
 	bodega.set_player_info(level_up_info, heals)
 	add_child(bodega)
@@ -173,6 +174,7 @@ func _on_critter_pick_critter_chosen(critter_type):
 	city_level.connect("battle_over", _on_battle_to_subway)
 	city_level.get_node("BattleBox").connect("heal_used", _on_heal_used)
 	city_level.get_node("BattleBox").set_player(chosen_player_type())
+	city_level.set_player_info(level_up_info, heals)
 	add_child(city_level)
 	battle_scene = city_level
 	$IntroScreen.queue_free()

@@ -23,6 +23,8 @@ radius = 32.0156
 
 [node name="Coffeeny" instance=ExtResource("1_5tgg8")]
 texture = ExtResource("2_avc7v")
+attack_speed = 0.7
+damage_value = [1, 2]
 critter_type = 8
 status_types = Array[int]([1])
 

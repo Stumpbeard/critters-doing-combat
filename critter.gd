@@ -128,10 +128,10 @@ func attack():
 		return false
 	var tween = create_tween()
 	if is_villain:
-		tween.tween_property(self, "offset:x", -25, 0.05)
+		tween.tween_property(self, "offset:x", -25, min(0.05, attack_speed))
 	else:
-		tween.tween_property(self, "offset:x", 25, 0.05)
-	tween.tween_property(self, "offset:x", 0, 0.05)
+		tween.tween_property(self, "offset:x", 25, min(0.05, attack_speed))
+	tween.tween_property(self, "offset:x", 0, min(0.05, attack_speed))
 	emit_signal("attacked", randi_range(damage_value[0], damage_value[1]), is_villain)
 	Global.play_critter_attack(critter_type)
 	return true

@@ -227,12 +227,15 @@ func duplicate_tex_but_yellow():
 
 
 func level_up():
+	scale = Vector2(1, 1)
 	var tween = create_tween()
 	tween.tween_property(self, "scale", scale * 2, 0.2)
 	tween.tween_property(self, "scale", scale, 0.2)
+	rotation_degrees = 0
 	var rot_tween = create_tween()
 	rot_tween.tween_property(self, "rotation_degrees", 720, 0.4)
 	rot_tween.tween_callback(set_rotation_degrees.bind(0))
+	get_node("YellowLayer").modulate.a = 0.0
 	var yellow_tween = create_tween()
 	yellow_tween.tween_property(get_node("YellowLayer"), "modulate:a", 1.0, 0.2)
 	yellow_tween.tween_property(get_node("YellowLayer"), "modulate:a", 0.0, 0.2)

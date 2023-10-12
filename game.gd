@@ -5,6 +5,8 @@ signal killed_god
 
 @export var song = preload("res://sounds/Salty Ditty.mp3")
 
+var ready_for_restart = false
+
 
 func _ready():
 	$BattleBox/SpawnSystem.connect("trigger_boss_mode", _on_trigger_boss_mode)
@@ -77,6 +79,8 @@ func _on_battle_box_battle_over():
 	for enemy in $BattleBox.enemies_killed:
 		$GameOver/GameOverLabel.text += "\n\t%s %s" % [$BattleBox.enemies_killed[enemy], enemy]
 	$GameOver/GameOverLabel.text += "\n\nYou were level %s" % [$BattleBox.level_info["level"]]
+	$GameOver/GameOverLabel.text += "\n\nClick to restart"
+	ready_for_restart = true
 	$GameOver.visible = true
 
 
@@ -114,3 +118,10 @@ func _on_battle_box_killed_boss():
 	tween.tween_interval(1.0)
 	tween.tween_property($BattleBox/Fade, "color:a", 1.0, 0.5)
 	await get_tree().create_timer(2.0).timeout
+	
+func _input(event):
+	if !ready_for_restart:
+		return
+	if event is InputEventMouseButton:
+		if !event.pressed && event.button_index == 1:
+			get_tree().reload_current_scene()

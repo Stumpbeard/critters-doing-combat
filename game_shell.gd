@@ -144,17 +144,17 @@ func _on_bought_heal():
 	level_up_info["kill_dollars"] -=1
 
 func _on_bought_hp():
-	level_up_info["kill_dollars"] -= level_up_info["hp"] + 1
+	level_up_info["kill_dollars"] -= 1
 	level_up_info["hp"] += 1
 	level_up_info["level"] += 1
 	
 func _on_bought_strength():
-	level_up_info["kill_dollars"] -= level_up_info["strength"] + 1
+	level_up_info["kill_dollars"] -= 1
 	level_up_info["strength"] += 1
 	level_up_info["level"] += 1
 	
 func _on_bought_speed():
-	level_up_info["kill_dollars"] -= level_up_info["speed"] + 1
+	level_up_info["kill_dollars"] -= 1
 	level_up_info["speed"] += 1
 	level_up_info["level"] += 1
 

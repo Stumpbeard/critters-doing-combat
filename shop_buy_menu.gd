@@ -127,9 +127,9 @@ func _on_heals_select_input_event(_viewport, event, _shape_idx):
 func _on_health_select_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if !event.pressed && event.button_index == 1:
-			if level_up_info["kill_dollars"] >= level_up_info["hp"] + 1:
+			if level_up_info["kill_dollars"] >= 1:
 				var exploding_number = exploding_number_scene.instantiate()
-				exploding_number.number = level_up_info["hp"] + 1
+				exploding_number.number = 1
 				add_child(exploding_number)
 				exploding_number.global_position = $KillsToSpend.global_position + Vector2(100, 0)
 				emit_signal("bought_hp")
@@ -143,9 +143,9 @@ func _on_health_select_input_event(viewport, event, shape_idx):
 func _on_damage_select_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if !event.pressed && event.button_index == 1:
-			if level_up_info["kill_dollars"] >= level_up_info["strength"] + 1:
+			if level_up_info["kill_dollars"] >= 1:
 				var exploding_number = exploding_number_scene.instantiate()
-				exploding_number.number = level_up_info["strength"] + 1
+				exploding_number.number = 1
 				add_child(exploding_number)
 				exploding_number.global_position = $KillsToSpend.global_position + Vector2(100, 0)
 				emit_signal("bought_strength")
@@ -159,13 +159,13 @@ func _on_damage_select_input_event(viewport, event, shape_idx):
 func _on_speed_select_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if !event.pressed && event.button_index == 1:
-			if level_up_info["kill_dollars"] >= level_up_info["speed"] + 1:
+			if level_up_info["kill_dollars"] >= 1:
 				var exploding_number = exploding_number_scene.instantiate()
-				exploding_number.number = level_up_info["speed"] + 1
+				exploding_number.number = 1
 				add_child(exploding_number)
 				exploding_number.global_position = $KillsToSpend.global_position + Vector2(100, 0)
 				emit_signal("bought_speed")
-				var attacks_per_second = make_speed_str(1.0 / (starting_attack_delay - level_up_info['speed'] * 0.1))
+				var attacks_per_second = make_speed_str(1.0 / (starting_attack_delay - level_up_info['speed'] * 0.02))
 				$SpeedUpHave.text = "%s/s" % [attacks_per_second]
 				$SpeedUpCost.text = "%s" % [1 + level_up_info["speed"]]
 				$KillsToSpend.text = "Kills: %s" % [level_up_info["kill_dollars"]]

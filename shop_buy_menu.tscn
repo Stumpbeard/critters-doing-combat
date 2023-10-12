@@ -241,6 +241,7 @@ texture = ExtResource("5_7dyge")
 
 [node name="ShopMovesBox" parent="." instance=ExtResource("6_mgwhr")]
 visible = false
+z_index = 1
 position = Vector2(443, 193)
 scale = Vector2(1e-05, 1e-05)
 

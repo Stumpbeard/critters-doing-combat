@@ -10,7 +10,7 @@ resource_local_to_scene = true
 radius = 36.0
 height = 166.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_cfxjk"]
+[sub_resource type="LabelSettings" id="LabelSettings_oq337"]
 resource_local_to_scene = true
 font = ExtResource("4_pis32")
 font_size = 32
@@ -18,7 +18,7 @@ font_size = 32
 [node name="HealButton" instance=ExtResource("1_mle5w")]
 script = ExtResource("2_hoord")
 heals = 1
-recharge_rate = 5.0
+recharge_rate = 1.0
 
 [node name="CollisionShape2D" parent="ActivationArea" index="0"]
 shape = SubResource("CapsuleShape2D_8lvrg")
@@ -29,5 +29,5 @@ offset_top = 19.0
 offset_right = 19.0
 offset_bottom = 54.0
 text = "x0"
-label_settings = SubResource("LabelSettings_cfxjk")
+label_settings = SubResource("LabelSettings_oq337")
 text_size = 32

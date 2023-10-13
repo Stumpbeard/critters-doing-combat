@@ -103,6 +103,7 @@ func _on_arrived_at_destination(dest):
 func roll_credits():
 	battle_scene.queue_free()
 	var ending = end_scene.instantiate()
+	ending.set_critter_graphic(player_type)
 	add_child(ending)
 	
 

@@ -1,6 +1,8 @@
 extends TextureRect
 
 @export var critter_graphic: Texture2D = preload("res://ratler.png")
+var pidge_graphic = preload("res://pidgepodge.png")
+var coffee_graphic = preload("res://coffeeny.png")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +23,12 @@ func _ready():
 	var tween_text = create_tween()
 	tween_text.tween_interval(6.0)
 	tween_text.tween_callback(print_text_one)
+	
+func set_critter_graphic(critter):
+	if critter == "PidgePodge":
+		critter_graphic = pidge_graphic
+	elif critter == "Coffeeny":
+		critter_graphic = coffee_graphic
 
 func bob_up():
 	create_tween().tween_property($SailingCritter, "position", $SailingCritter.position + Vector2(16, -16), 2.0)

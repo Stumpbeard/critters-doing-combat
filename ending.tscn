@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dqs2eyoeveexh" path="res://sounds/Morning.mp3" id="6_6p8mj"]
 [ext_resource type="PackedScene" uid="uid://w2kynn6p4lve" path="res://credits.tscn" id="7_qiqan"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_41iyy"]
+[sub_resource type="LabelSettings" id="LabelSettings_wt6tf"]
 resource_local_to_scene = true
 font = ExtResource("4_x801b")
 font_size = 64
@@ -26,7 +26,7 @@ offset_left = 64.0
 offset_right = 92.0
 offset_bottom = 64.0
 text = ""
-label_settings = SubResource("LabelSettings_41iyy")
+label_settings = SubResource("LabelSettings_wt6tf")
 horizontal_alignment = 0
 text_size = 64
 play_sound = false
